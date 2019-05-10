@@ -57,7 +57,7 @@ body > .header {
 }
 /*right side - contins main content*/
 .right-side {
-  background-color: #f1f2f7;
+  background-color: #eee;
   margin-left: 220px;
   padding: 20px;
 }
@@ -185,8 +185,8 @@ body > .header {
     box-sizing: border-box;
     width: 100%;
     height: auto;
-    line-height:auto;
-    padding: ;
+    line-height: auto;
+    padding: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -301,8 +301,8 @@ body.fixed .wrapper {
 /* Content */
 .content {
   padding: 20px 15px;
-  background: #f0f3f4;
-  overflow: auto;
+  background: #fff;
+  overflow: hidden;
 }
 /* Utility */
 /* H1 - H6 font */
@@ -697,6 +697,14 @@ table.text-center th {
 .table.align td {
   text-align: right;
 }
+.table tbody tr td{
+      overflow: hidden; 
+      text-overflow:ellipsis;  
+      white-space: nowrap; 
+ }
+ .table{
+  table-layout:fixed;
+ }
 .text-bold,
 .text-bold.table td,
 .text-bold.table th {
@@ -880,6 +888,25 @@ body > .header .navbar .nav > li > a > .label {
   text-align: center;
   padding: 2px;
 }
+.s-button {
+    box-sizing: border-box;
+    border: none;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: 0;
+    white-space: nowrap;
+    min-width: 5.66666667em;
+    height: 2.5em;
+    line-height: 2.5em;
+    color: #fff;
+    background-color: #036fe2;
+    font-size: 1em;
+    position: relative;
+    transition: all .2s ease-in-out;
+}
 body > .header .navbar .nav > li > a:hover > .label {
   top: 3px;
 }
@@ -1006,6 +1033,7 @@ content: '';
     height: 46px;
     line-height: 35px;
     border-bottom: 1px solid #eee;
+    background-color: #fff;
     font-size: 16px;
 }
 .s-icon-custom-loading {
@@ -2914,7 +2942,7 @@ vertical-align: top;
   color: #000;
   font-weight: 600;
 }
-.mailbox .table-mailbox tr > td > .fa.fa-star,
+.mailbox .mailbox tr > td > .fa.fa-star,
 .mailbox .table-mailbox tr > td > .fa.fa-star-o,
 .mailbox .table-mailbox tr > td > .glyphicon.glyphicon-star,
 .mailbox .table-mailbox tr > td > .glyphicon.glyphicon-star-empty {
@@ -4100,6 +4128,7 @@ ul.online-users {
 .table > thead > tr > th {
   vertical-align: bottom;
   border-bottom: 1px solid #dddddd;
+
 }
 
 #summary a.list-group-item{
@@ -4163,10 +4192,7 @@ display: block;
 border-radius: 500px;
 white-space: nowrap;
 }
-.panel .panel-heading {
-padding: 10px 15px;
-text-transform: uppercase;
-}
+.panel .panel-heading {padding: 10px 15px;text-transform: uppercase;background: #fff;}
 .bg-info {
 background-color: #7acbee;
 color: white;
