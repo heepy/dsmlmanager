@@ -2,7 +2,6 @@
 #数据源
 spring:
   datasource:
-    type: com.mysql.cj.jdbc.MysqlDataSource
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/dsml
     username: root

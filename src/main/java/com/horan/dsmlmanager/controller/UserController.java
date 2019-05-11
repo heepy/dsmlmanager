@@ -15,12 +15,11 @@ import java.util.List;
  *
  */
 @RestController
-@RequestMapping(value = "/")
+@RequestMapping(value = "/user")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping
     @PostMapping(value = "/alluser")
     public List<User> getUsers() {
         return userService.findAllUsers();
