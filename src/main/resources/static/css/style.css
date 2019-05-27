@@ -105,6 +105,24 @@ body > .header {
     color: #979797;
     margin: 1px 4px;
 }
+.s-modal_bg {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,.3);
+    z-index: 5000;
+}
+.s-modal_wrapper {
+    position: fixed;
+    top: 20px;
+    bottom: 0;
+    left: 0;
+    right: 70px;
+    text-align: right;
+    z-index: 6000;
+}
 .tzfont {
     display: inline-block;
     -webkit-transform: translate(0);
