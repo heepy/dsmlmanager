@@ -32,7 +32,20 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     }
 
+    /**
+     * 访问静态资源
+     * @param registry
+     */
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");//
+    }
+
+    /**
+     * 添加跨域访问
+     * @param registry
+     */
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**").allowedHeaders("*").allowedOrigins("*").allowedMethods("*");
     }
 }
