@@ -306,7 +306,7 @@
                 </ul>
                 <span class="app-sidebar_cat">数据中心</span>
                 <ul class="sidebar-menu">
-                     <li>
+                    <li>
                         <a href="simple.html">
                             <span>数据集管理</span>
                         </a>
@@ -316,7 +316,6 @@
                             <span>图片标注</span>
                         </a>
                     </li>
-                   
                 </ul>
             </section>
             <!-- /.sidebar -->
@@ -328,35 +327,52 @@
                         <!---->
                     </li>
                 </ul>
-                <div class="row" style="height: 180px">
-                    <div class="col-xs-12">
-                        <button class="s-button" id="s-button" style="margin-top: 20px;margin-bottom: 10px">创建项目</button>
+                <div class="row" style="height: 20px"></div>
+                <div class="col-xs-12" style="margin-top: 20px;margin-bottom: 10px;">
+                    <div class="col-lg-1" style="margin-top: 10px">
+                        <span style="font-size: 15px;">
+                            <font style="color:red">*</font>
+                            数据集
+                        </span>
                     </div>
-                    <div class="col-xs-12">
-                        <div class="panel">
-                            <header class="panel-heading" style="text-align: center;">
-                                <span style="font-size: 20px;font-weight: bold;letter-spacing: 10px">数据集列表</span>
-                            </header>
-                            <!-- <div class="box-header"> -->
-                            <!-- <h3 class="box-title">Responsive Hover Table</h3> -->
-                            <!-- </div> -->
-                            <div class="panel-body table-responsive">
-                                <div class="box-tools m-b-15">
-                                    <div class= "input-group">
-                                        <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <table id="table_project" class="table table-hover" style="width: 100%">
-                                </table>
-                            </div><!-- /.box-body -->
-                        </div><!-- /.box -->
+                    <div class="col-lg-2">
+                        <select class="form-control" id="imageSet_Select" onchange="selectOnchang(this)">
+                            <option>请选择数据集</option>
+                            <option value="数据标注">数据标注</option>
+                            <option value="数据标注">数据标注</option>
+                        </select>
                     </div>
                 </div>
-            </section>
-        </aside>
+                <div class="col-xs-12">
+                    <div class="col-lg-2">
+                        <button class="s-button" id="s-button" style="margin-top: 20px;margin-bottom: 10px">标注图片</button>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="panel">
+                        <header class="panel-heading" style="text-align: center;">
+                            <span style="font-size: 20px;font-weight: bold;letter-spacing: 10px">数据集列表</span>
+                        </header>
+                        <!-- <div class="box-header"> -->
+                        <!-- <h3 class="box-title">Responsive Hover Table</h3> -->
+                        <!-- </div> -->
+                        <div class="panel-body table-responsive">
+                            <div class="box-tools m-b-15">
+                                <div class="input-group">
+                                    <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <table id="table_project" class="table table-hover" style="width: 100%">
+                            </table>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
+    </div>
+    </section>
+    </aside>
     </div>
     <!-- /.content -->
     <div class="footer-main">
@@ -390,6 +406,16 @@
     <script src="js/plugins/bootstrap-table/bootstrap-table-zh-CN.js" type="text/javascript"></script>
     <script src="js/plugins/imageLabel/jquery.imageLabel.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="js/plugins/imageLabel/template.js"></script>
+   <!--数据集选择框的 -->
+    <script language="javascript" type="text/javascript">
+    $(document).ready(function() {
+        $('#imageSet_Select').change(function() {
+            alert($(this).children('option:selected').val());
+            var p1 = $(this).children('option:selected').val(); //这就是selected的值  
+           
+        })
+    })
+    </script>
     <!-- Director for demo purposes -->
     <script type="text/javascript">
     $('input').on('ifChecked', function(event) {
@@ -405,13 +431,19 @@
         console.log('not');
     });
     </script>
+
     <script>
     var imageLabel;
     $("#s-button").click(function(t) {
+        if( $('#imageSet_Select').val()=="请选择数据集"){
+            alert("请选择数据集");
+            return ;
+        }
         t.preventDefault();
-        var showedit = '<div class="s-modal_bg">\n<div class="s-modal_wrapper"><div class="s-modal_main">\n<div class="s-modal_body">\n<div class="left">\n<div class="s-modal_head">选择你的标注方式</div>\n</div>\n<div class="right">\n<div class="s-modal_head">图片列表</div>\n</div>\n</div></div></div>';
+        var showedit = '<div class="s-modal_bg">\n<div class="s-modal_wrapper"><div class="s-modal_main">\n<div class="s-modal_body">\n<div class="left">\n<div class="s-modal_head">标注图片</div>\n</div>\n<div class="right">\n<div class="s-modal_head">图片列表</div>\n</div>\n</div></div></div>';
         sd = $(showedit);
-        var addtoolbox = '<div class="img-edit-toolbox">\n <div class="img-item">\n<a href="javascript:void(0);" title="删除" id="delete_img" onclick="delete_img()"><img src="img/icon/delete.png"/></a>\n</div> \n<div class="img-item"> \n<a id="" href="javascript:void(0);" title="保存" id="save_lable" onclick="save_lable()"><img src="img/icon/save.png"/></a>\n</div><div class="img-item"><a  href="javascript:void(0);" title="关闭" onclick="close_lable()"><img src="img/icon/close.png"/></a></div></div>';
+
+        var addtoolbox = '<div class="img-edit-toolbox">\n<div class="img-item">\n<a id="" href="javascript:void(0);" title="上一张" onclick="pre_img()"><img src="img/icon/pre_img.png"/></div><div class="img-item">\n<a href="javascript:void(0);" title="删除" id="delete_img" onclick="delete_img()"><img src="img/icon/delete.png"/></a>\n</div> \n<div class="img-item"> \n<a id="" href="javascript:void(0);" title="保存" id="save_lable" onclick="save_lable()"><img src="img/icon/save.png"/></a>\n</div><div class="img-item"><a  href="javascript:void(0);" title="关闭" onclick="close_lable()"><img src="img/icon/close.png"/></a></div><div class="img-item">\n<a id="" href="javascript:void(0);" title="下一张" onclick="next_img()"><img src="img/icon/next_img.png"/></a></div></div>';
         var at = $(addtoolbox);
         var addPicList = '<div class="s-modal_list">\n<div class="vertical-list"></div></div>';
         var apl = $(addPicList);
@@ -420,7 +452,7 @@
         sd.find(".left").find(".s-modal_head").append(at);
         sd.find(".right").append(apl);
         $("body").append(sd);
-         $imageLabel = imageLabel({
+        $imageLabel = imageLabel({
             img: "test.jpg",
             editPop: true,
             close: function(t) {
@@ -437,7 +469,6 @@
         })
 
     })
- 
     </script>
     <script type="text/javascript">
     function getList() {
@@ -450,16 +481,30 @@
     }
     </script>
     <script type="text/javascript">
-     function save_lable() {
-            alert(JSON.stringify($imageLabel.getData()));
-     }
-     function delete_img(){
+    function save_lable() {
+        alert(JSON.stringify($imageLabel.getData()));
+    }
 
-     }
-      function close_lable(){
-       $("body").find(".s-modal_bg").remove();
-     }
+    function delete_img() {
 
+    }
+
+    function close_lable() {
+        $("body").find(".s-modal_bg").remove();
+    }
+
+    function pre_img() {
+
+    }
+
+    function next_img() {
+
+    }
+    </script>
+    <script type="text/javascript">
+    function getimgurl() {
+
+    }
     </script>
     <script type="text/javascript">
     (function($) {
@@ -471,9 +516,10 @@
         }
     })(jQuery);
 
-    var projectID = $.getUrlParam('projectID');
+    //var projectID = $.getUrlParam('projectID');
+     var projectID=1;
     $('#table_project').bootstrapTable({
-        //url: 'http://localhost:8080/dsml/image/table/'+projectID, //请求后台的URL（*）
+        url: 'http://localhost:8080/dsml/image/table/'+projectID, //请求后台的URL（*）
         method: 'get', //请求方式（*）
         //工具按钮用哪个容器
         striped: true, //是否显示行间隔色
@@ -508,12 +554,13 @@
         paginationPreText: "上一页",
         paginationNextText: "下一页",
         columns: [{
-                field: 'imageID',
-                title: '图片ID'
+                field: 'ID',
+                title: 'ID',
+                
             },
             {
-                field: 'imageName',
-                title: '图片名称'
+                field: 'data-progress-text',
+                title: '名称'
             },
             {
                 field: 'projectID',

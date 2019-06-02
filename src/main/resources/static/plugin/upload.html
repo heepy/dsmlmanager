@@ -1,36 +1,29 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
-
-<meta charset="UTF-8">
-
-
-<!-- 引用控制层插件样式 -->
-
-<link rel="stylesheet" href="control/css/zyUpload.css" type="text/css">
-
-<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-
-<!-- 引用核心层插件 -->
-
-<script src="core/zyFile.js"></script>
-
-<!-- 引用控制层插件 -->
-
-<script src="control/js/zyUpload.js"></script>
-
-<!-- 引用初始化JS -->
-
-<script src="core/jq22.js"></script>
-
+    <meta charset="UTF-8">
+    <!-- 引用控制层插件样式 -->
+    <link rel="stylesheet" href="control/css/zyUpload.css" type="text/css">
+    <script src="control/js/jquery-1.7.2.js"></script>
+    <!-- 引用核心层插件 -->
+    <script src="core/zyFile.js"></script>
+    <!-- 引用控制层插件 -->
+    <script src="control/js/zyUpload.js"></script>
+    <!-- 引用初始化JS -->
+    <script src="core/jq22.js"></script>
 </head>
 
 <body>
-
-<div id="demo" class="demo"></div>
-
+    <div id="demo" class="demo"></div>
 </body>
+<script type="text/javascript">
+	function  getDataSetid(){
+    var str = location.href
+    var num = str.indexOf("#");
+    str = str.substr(num + 1);
+    return str;
+}
+</script>
 
 </html>
