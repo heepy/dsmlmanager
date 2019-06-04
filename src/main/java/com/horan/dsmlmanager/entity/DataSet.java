@@ -9,6 +9,15 @@ public class DataSet implements Serializable {
     public DataSet() {
     }
 
+    public int getProId() {
+        return proId;
+    }
+
+    public void setProId(int proId) {
+        this.proId = proId;
+    }
+
+    private int proId;
     private String dataSetName;
     private Date createTime;
     private int imageTotal;

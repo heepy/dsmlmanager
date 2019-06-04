@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public interface DataSetSevice {
-    List<DataSet> getPageDataSet(int currentPage,int pageSize);
+    List<DataSet> getPageDataSet(int currentPage,int pageSize,int proId);
     boolean addDataSet(DataSet dataSet);
     int getTotal();
     boolean deleteDataSetById(int id);

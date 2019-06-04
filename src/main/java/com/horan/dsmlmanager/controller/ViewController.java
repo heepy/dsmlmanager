@@ -19,7 +19,7 @@ public class ViewController {
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index() {
-        return "index.html";
+        return "static/index.html";
     }
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(){

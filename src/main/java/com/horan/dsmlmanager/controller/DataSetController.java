@@ -24,9 +24,9 @@ public class DataSetController {
     private DataSetSevice dataSetSevice;
 
     @GetMapping(value = "/getlist")
-    public Map<String, Object> getPageDataSet(@RequestParam(name = "currentpage") int currentPage, @RequestParam(name = "pagesize") int pageSize) {
+    public Map<String, Object> getPageDataSet(@RequestParam(name = "currentpage") int currentPage, @RequestParam(name = "pagesize") int pageSize, @RequestParam(name = "proId") int proId) {
         Map<String, Object> result = new HashMap<>();
-        List<DataSet> dataSetList = dataSetSevice.getPageDataSet(currentPage, pageSize);
+        List<DataSet> dataSetList = dataSetSevice.getPageDataSet(currentPage, pageSize,proId);
         result.put("rows", dataSetList);
         System.out.println(dataSetList.get(0).getCreateTime());
         int total = dataSetSevice.getTotal();

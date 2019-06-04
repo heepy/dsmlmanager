@@ -20,10 +20,11 @@ public class DataSetServiceImpl implements DataSetSevice {
     @Autowired
     private DataSetMapper dataSetDao;
     @Override
-    public List<DataSet> getPageDataSet(int currentPage, int pageSize) {
+    public List<DataSet> getPageDataSet(int currentPage, int pageSize,int proId) {
         Map<String, Object> data = new HashMap();
         data.put("currIndex", (currentPage-1)*pageSize);
         data.put("pageSize", pageSize);
+        data.put("proId", proId);
         List<DataSet> dataSetList=dataSetDao.getPageDataSet(data);
         return dataSetList;
     }

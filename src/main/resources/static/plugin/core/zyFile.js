@@ -18,7 +18,7 @@ var ZYFILE = {
 		onSelect : function(selectFile, files){      // 提供给外部获取选中的文件，供外部实现预览等功能  selectFile:当前选中的文件  allFiles:还没上传的全部文件
 			
 		},
-		onDelete : function(file, files){            // 提供给外部获取删除的单个文件，供外部实现删除效果  file:当前删除的文件  files:删除之后的文件
+		onDelete : function(file, files){         // 提供给外部获取删除的单个文件，供外部实现删除效果  file:当前删除的文件  files:删除之后的文件
 			
 		},
 		onProgress : function(file, loaded, total){  // 提供给外部获取单个文件的上传进度，供外部实现上传进度效果
@@ -30,7 +30,8 @@ var ZYFILE = {
 		onFailure : function(file, responseInfo){    // 提供给外部获取单个文件上传失败，供外部实现失败效果
 		
 		},
-		onComplete : function(responseInfo){         // 提供给外部获取全部文件上传完成，供外部实现完成效果
+		onComplete : function(responseInfo){       
+		  // 提供给外部获取全部文件上传完成，供外部实现完成效果
 			
 		},
 		

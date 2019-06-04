@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.horan.dsmlmanager.dao.ImageMapper">
+    <resultMap id="imageResultMap"  type="com.horan.dsmlmanager.entity.Image" >
+        <id property="id" column="id"></id>
+        <result property="dataSetId" column="dataSet_id"></result>
+        <result property="imgName" column="imgName"></result>
+        <result property="src" column="src"></result>
+        <result property="sign" column="sign"></result>
+
+    </resultMap>
+    <select id="getPageImage" parameterType="map" resultMap="imageResultMap">
+        select * from image
+         where dataSet_id=#{dataSetId} and sign=0
+        limit #{currIndex} , #{pageSize}
+    </select>
+    <select id="getAllNoSignImage" parameterType="int" resultMap="imageResultMap">
+        select * from image
+         where dataSet_id=#{dataSetId} and sign=0
+    </select>
+    <select id="getSrcById" parameterType="int" resultType="String">
+       select src from image where id=#{id}
+    </select>
+    <insert id="addImageList" parameterType="java.util.List" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        insert into image(imgName, dataSetId, src,sign) values
+                 <foreach collection="list" item="item" index="index" separator=",">
+                     (#{imgName},
+                      #{dataSetId},
+                      #{src},#{sign})
+                 </foreach>
+    </insert>
+</mapper>

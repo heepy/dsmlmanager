@@ -10,15 +10,17 @@
         <result property="imageTotal" column="image_total"></result>
         <result property="annotationTotal" column="annotation_total"></result>
         <result property="status" column="status"></result>
+        <result property="proId" column="proId"></result>
     </resultMap>
     <select id="getPageDataSet" parameterType="map" resultMap="dataSetResultMap">
         select * from data_set
         limit #{currIndex} , #{pageSize}
+        where proId=#{proId}
     </select>
     <insert id="addDataSet"  parameterType="com.horan.dsmlmanager.entity.DataSet" useGeneratedKeys="true" keyProperty="id" >
-      insert into data_set(id,dataset_name,create_time,image_total,annotation_total,status)
+      insert into data_set(id,dataset_name,create_time,image_total,annotation_total,status,proId)
       values
-       (#{id},#{dataSetName},#{createTime},#{imageTotal},#{annotationTotal},#{status})
+       (#{id},#{dataSetName},#{createTime},#{imageTotal},#{annotationTotal},#{status},#{proId})
     </insert>
     <select id="getCount" resultType="int">
         select count(*) from data_set

@@ -3,53 +3,65 @@ package com.horan.dsmlmanager.entity;
 import java.io.Serializable;
 
 public class Project implements Serializable {
-    private int projectID;
-    private String projectName;
+    private int id;
+    private String proName;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getProName() {
+        return proName;
+    }
+
+    public void setProName(String proName) {
+        this.proName = proName;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getProModel() {
+        return proModel;
+    }
+
+    public void setProModel(String proModel) {
+        this.proModel = proModel;
+    }
+
+    public String getProTime() {
+        return proTime;
+    }
+
+    public void setProTime(String proTime) {
+        this.proTime = proTime;
+    }
+
+    public String getProDec() {
+        return proDec;
+    }
+
+    public void setProDec(String proDec) {
+        this.proDec = proDec;
+    }
+
+    private int userId;
     public Project() {
     }
 
-    public int getProjectID() {
-        return projectID;
-    }
 
-    public void setProjectID(int projectID) {
-        this.projectID = projectID;
-    }
 
-    public String getProjectName() {
-        return projectName;
-    }
 
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-
-    public String getProjectModel() {
-        return projectModel;
-    }
-
-    public void setProjectModel(String projectModel) {
-        this.projectModel = projectModel;
-    }
-
-    public String getProjectTime() {
-        return projectTime;
-    }
-
-    public void setProjectTime(String projectTime) {
-        this.projectTime = projectTime;
-    }
-
-    public String getProjectDec() {
-        return projectDec;
-    }
-
-    public void setProjectDec(String projectDec) {
-        this.projectDec = projectDec;
-    }
-
-    private String projectModel;
-    private String projectTime;
-    private String projectDec;
+    private String proModel;
+    private String proTime;
+    private String proDec;
 }

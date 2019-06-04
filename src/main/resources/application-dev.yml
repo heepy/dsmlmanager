@@ -7,14 +7,6 @@ spring:
     username: root
     password: zhrsql
 
-# mvc配置
-  mvc:
-    view:
-      suffix: .html
-      static-path-pattern: /**
-      resources:
-          static-locations: classpath:/static/
-
   #引擎模板配置
   thymeleaf:
     mode: HTML
@@ -26,4 +18,4 @@ server:
     context-path: /dsml
 #项目存放位置
 dsml:
-   path: D:/zhr/
+   path: file:D:/dsml/
