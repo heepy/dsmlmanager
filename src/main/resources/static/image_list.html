@@ -304,15 +304,11 @@
                     </li>
                 </ul>
                 <div class="col-xs-12" style="margin-top: 20px;margin-bottom: 10px;">
-                    <div class="col-lg-1" style="margin-top: 10px">
-                        <span style="font-size: 15px;">
+                    <div class="col-lg-12" style="margin-top: 10px">
+                        <span id="dataSetName" style="font-size: 15px;">
                             <font style="color:red">*</font>
-                            数据集
+                            数据集名称：
                         </span>
-                    </div>
-                    <div class="col-lg-2">
-                        <select id="selectid" class="form-control">
-                        </select>
                     </div>
                 </div>
                 <div class="col-xs-12">
@@ -324,7 +320,7 @@
                             </div>
                         </div>
                         <div class="datasets-show_btn-group">
-                            <button type="button" class="s-button">
+                            <button type="button" class="s-button" id="s-button">
                                 <span class="s-button__txt">创建数据集</span>
                             </button>
                         </div>
@@ -338,6 +334,7 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="datasets-show-foot"></div>
                     </div>
                 </div>
             </section>
@@ -381,43 +378,13 @@
     <script type="text/javascript" src="js/plugins/zpage/jquery.z-pager.js"></script>
     <script type="text/javascript" src="js/plugins/zpage/page_common.js"></script>
     <script type="text/javascript">
+    var dataSetId = 10000;
     var total;
-    var imglist;
+    var imgList;
+    var currentPage=1;
     $(function() {
         if (total > 0) {
-            loadEntityList(imglist);
-            var addfoot = '<div class="datasets-show-foot"><span>累计有' + total + '张图片</span><div id="pager" class="page_s1"></div></div>'
-            $(".datasets-show").append(addfoot);
-
-            var page_s1 = createPage('.page_s1');
-            // 设置分页
-            setPage(page_s1, {
-                pageTotal: total, // 数据总条数   
-                pageSize: 20, // 每页显示条数
-                pageCurrent: 1, //  当前页
-                maxBtnNum: 5, // 最多按钮个数  （最少5个）
-                change: function(e) { // 页数变化回调函数（发送Get请求）
-                    $.ajax({
-                        type: 'get',
-                        url: "http://localhost:8080/dsml/image/getimglist",
-                        data: {
-                            dataSetId: 1,
-                            sign: 0,
-                            pageSize: 20,
-                            pageCurrent: e
-
-                        },
-                        async: false,
-                        success: function(res) {
-                            total = res.total;
-                            imglist = res.imgList;
-                            loadEntityList(imglist)
-                        },
-                        dataType: "json"
-                    });
-                },
-            })
-
+            loadEntityList(imgList, total,currentPage);
         }
 
     });
@@ -425,29 +392,63 @@
         type: 'get',
         url: "http://localhost:8080/dsml/image/getimglist",
         data: {
-            dataSetId: 1,
+            dataSetId: dataSetId,
             sign: 0,
-            pageSize: 20,
-            pageCurrent: 1
+            pageSize: 12,
+            pageCurrent: currentPage
 
         },
         async: false,
         success: function(res) {
             total = res.total;
-            imglist = res.imgList;
-
+            imgList = res.imgList;
         },
         dataType: "json"
     });
     </script>
     <script type="text/javascript">
-    function loadEntityList(imglist) {
+    function loadEntityList(imgList, total,currentPage) {
         var entity_img = '';
-        for (var i = 0; i < imglist.length; i++) {
-            entity_img += '<div class="entity-img">\n<div class="entity-img_top" id="'+imglist[i].id+'"style="background-image:url(' + imglist[i].src + ')"><div class="entity-img_top_overlay"><div class="entity-menu"><div class="entity-menu_sqr" id="'+imglist[i].id+'"><img src="img/icon/close_min_red.png" title="删除"></div></div></div></div><div class="entity-img_bottom"><span title="' + imglist[i].imgName + '">' + imglist[i].imgName + '</span></div></div>';
+        for (var i = 0; i < imgList.length; i++) {
+
+            entity_img += '<div class="entity-img">\n<div class="entity-img_top" id="' + imgList[i].id + '"style="background-image:url(http://localhost:8080/dsml/visit' + imgList[i].src + ')"><div class="entity-img_top_overlay"><div class="entity-menu"><div class="entity-menu_sqr" id="' + imgList[i].id + '"><img src="img/icon/close_min_red.png" title="删除"></div></div></div></div><div class="entity-img_bottom"><span title="' + imgList[i].imgName + '">' + imgList[i].imgName + '</span></div></div>';
         }
 
 
+        var addfoot = '<div class="datasets-show-foot"><span>累计有' + total + '张图片</span><div id="pager" class="page_s1 style="float:right"></div><div>';
+        $(".datasets-show-foot").empty();
+        $(".datasets-show-foot").append(addfoot);
+        var page_s1 = createPage('.page_s1');
+        // 设置分页
+        setPage(page_s1, {
+            pageTotal: total, // 数据总条数   
+            pageSize: 12, // 每页显示条数
+            pageCurrent: currentPage, //  当前页
+            maxBtnNum: 5, // 最多按钮个数  （最少5个）
+            change: function(e) { 
+            // 页数变化回调函数（发送Get请求）
+               currentPage=e; 
+      
+                $.ajax({
+                    type: 'get',
+                    url: "http://localhost:8080/dsml/image/getimglist",
+                    data: {
+                        dataSetId: dataSetId,
+                        sign: 0,
+                        pageSize: 12,
+                        pageCurrent: currentPage
+
+                    },
+                    async: false,
+                    success: function(res) {
+                        total = res.total;
+                        imgList = res.imgList;
+                        loadEntityList(imgList, total,currentPage);
+                    },
+                    dataType: "json"
+                });
+            },
+        });
         $(".entity-list").empty();
         $(".entity-list").append(entity_img);
 
@@ -465,15 +466,153 @@
         $("#nolabel").removeClass("active");
         $(".indicator").css({ "width": "130px", "transform": "translateX(0px)" })
     });
- 
-    $(document).on("click", ".entity-img_top", function() {//动态添加的元素，绑定点击事件
 
-        alert("查看大图"+$(this).attr("id"));
-    });
-    $(document).on("click", ".entity-menu_sqr", function() {
-        alert("删除图片"+$(this).attr("id"));
-        return false; //阻止Js冒泡
+    $(document).on("click", ".entity-img_top", function() { //动态添加的元素，绑定点击事件
+
+         var id=$(this).attr("id");
+         var src=getImgSrc(id);
+         showImage(src);
+
     });
     </script>
+    <script type="text/javascript">
+    $(document).on("click", ".entity-menu_sqr",
+        function() {
+            var id = $(this).attr("id");
+            bootbox.confirm({
+                size: "small",
+                message: "您确定删除图片吗？",
+                title: "删除图片",
+                buttons: {
+                    confirm: {
+                        label: '确定',
+                        className: 'boot-button-confirm'
+                    },
+                    cancel: {
+                        label: '取消',
+                        className: 'boot-button-cancel'
+                    }
+                },
+                callback: function(result) {
+                    if (result) {
+                        $.ajax({
+                            method: "DELETE",
+                            type: "DELETE",
+                            url: 'http://localhost:8080/dsml/image/delete/' + id,
+                            data: {
+                                id: id
+                            },
+                            dataType: "json",
+                            async: true,
+                            success: function(res) {
+                                alert(currentPage);
+                                $.ajax({
+                                    type: 'get',
+                                    url: "http://localhost:8080/dsml/image/getimglist",
+                                    data: {
+                                        dataSetId: dataSetId,
+                                        sign: 0,
+                                        pageSize: 12,
+                                        pageCurrent: currentPage
 
+                                    },
+                                    async: false,
+                                    success: function(res) {
+                                        total = res.total;
+                                        imgList = res.imgList;
+                                    },
+                                    dataType: "json"
+                                });
+                                loadEntityList(imgList, total,currentPage);
+                            }
+                        });
+                    }
+                }
+            });
+            return false; //阻止Js冒泡
+        });
+    </script>
+<script type="text/javascript">
+        function showImage(src){  //展示大图
+         var baseHtml = '<div class="s-modal_bg">\n<div class="s-modal_wrapper"><div class="s-modal_main">\n<div class="s-modal_body"><div class="upload"><div class="s-modal_up_head">查看图片<div class="img-edit-toolbox"><div class="img-item"><a  href="javascript:void(0);" title="关闭" onclick="close_lable()"><img src="img/icon/close.png"/></a><div></div></div></div></div>\n</div></div>';
+        var outHtml = $(baseHtml);
+        var img='<img  src="http://localhost:8080/dsml/visit'+src+'"onload="javascript:DrawImage(this,1000,560)"/>';
+        outHtml.find(".upload").append(img);
+        $("body").append(outHtml);
+        }
+
+</script>
+<script type="text/javascript">
+function close_lable() {
+        $("body").find(".s-modal_bg").remove();
+        $("#table_dateSet").bootstrapTable('refresh');
+}
+function getImgSrc(id){
+    var src;
+         $.ajax({
+                    type: 'get',
+                    url: "http://localhost:8080/dsml/image/getimgbyid",
+                    data: {
+                     id:id
+                    },
+                    async: false,
+                    success: function(res) {
+                        src = res.src;
+                    },
+                    dataType: "json"
+                });
+     return src;    
+}
+</script>
+<script type="text/javascript">
+    /**
+ * 图片按宽高比例进行自动缩放
+ * @param ImgObj
+ *     缩放图片源对象
+ * @param maxWidth
+ *     允许缩放的最大宽度
+ * @param maxHeight
+ *     允许缩放的最大高度
+ * @usage 
+ *     调用：<img src="图片" onload="javascript:DrawImage(this,100,100)">
+ */
+function DrawImage(ImgObj, maxWidth, maxHeight){
+    var image = new Image();
+    //原图片原始地址（用于获取原图片的真实宽高，当<img>标签指定了宽、高时不受影响）
+    image.src = ImgObj.src;
+    // 用于设定图片的宽度和高度
+    var tempWidth;
+    var tempHeight;
+    
+    if(image.width > 0 && image.height > 0){
+        //原图片宽高比例 大于 指定的宽高比例，这就说明了原图片的宽度必然 > 高度
+        if (image.width/image.height >= maxWidth/maxHeight) {
+            if (image.width > maxWidth) {
+                tempWidth = maxWidth;
+                // 按原图片的比例进行缩放
+                tempHeight = (image.height * maxWidth) / image.width;
+            } else {
+                // 按原图片的大小进行缩放
+                tempWidth = image.width;
+                tempHeight = image.height;
+            }
+        } else {// 原图片的高度必然 > 宽度
+            if (image.height > maxHeight) {  
+                tempHeight = maxHeight;
+                // 按原图片的比例进行缩放
+                tempWidth = (image.width * maxHeight) / image.height;      
+            } else {
+                // 按原图片的大小进行缩放
+                tempWidth = image.width;
+                tempHeight = image.height;
+            }
+        }
+        // 设置页面图片的宽和高
+        ImgObj.height = tempHeight;
+        ImgObj.width = tempWidth;
+        // 提示图片的原来大小
+        ImgObj.alt = image.width + "×" + image.height;
+    }
+}
+</script>
 </html>

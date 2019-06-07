@@ -7,5 +7,5 @@ import java.util.List;
 
 @Service
 public interface ProjectService  {
- public  List<Project> getProjectList(int currentPage,int pageSize);
+   List<Project> getProjectList(int currentPage,int pageSize,int userId);
 }

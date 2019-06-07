@@ -17,9 +17,9 @@ public class ProjectController {
     private ProjectService projectService;
 
     @GetMapping(value = "/table")
-    public Map<String, Object> getProjectList(@RequestParam(name = "currentpage") int currentPage, @RequestParam(name = "pagesize") int pageSize) {
+    public Map<String, Object> getProjectList(@RequestParam(name = "currentpage") int currentPage, @RequestParam(name = "pagesize") int pageSize, @RequestParam(name = "userId",required =true) int userId) {
         Map<String, Object> result = new HashMap<>();
-        List<Project> projectList = projectService.getProjectList(currentPage, pageSize);
+        List<Project> projectList = projectService.getProjectList(currentPage, pageSize, userId);
         result.put("rows",projectList);
         result.put("total",projectList.size()+100);
         return result;

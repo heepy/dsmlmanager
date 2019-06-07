@@ -16,4 +16,14 @@ public class UserServiceImpl implements UserService {
     public List<User> findAllUsers() {
         return userDao.selectAllUser();
     }
+
+    @Override
+    public User getSimpleUserById(int id) {
+        return userDao.selectUserById(id);
+    }
+
+    @Override
+    public void addUser(User user) {
+        userDao.addUser(user);
+    }
 }

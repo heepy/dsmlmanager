@@ -29,14 +29,14 @@ public class JavaBeanToXml {
         size.setDepth(100);
         size.setWidth(100);
         size.setHeight(100);
-        for(int i=0;i<10 ;i++){
-            Label label=new Label();
-            label.setEx(10);
-            label.setEy(10);
-            label.setX(10);
-            label.setY(10);
-            labelList.add(label);
-        }
+//        for(int i=0;i<10 ;i++){
+//            Label label=new Label();
+//            label.setEx(10);
+//            label.setEy(10);
+//            label.setX(10);
+//            label.setY(10);
+//            labelList.add(label);
+//        }
         annotation.setLabel(labelList);
         annotation.setSize(size);
         annotation.setFileName("134123");

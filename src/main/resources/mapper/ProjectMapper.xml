@@ -5,13 +5,13 @@
 <mapper namespace="com.horan.dsmlmanager.dao.ProjectMapper">
     <resultMap id="projectResultMap"  type="com.horan.dsmlmanager.entity.Project" >
         <id property="id" column="id"></id>
-        <result property="proName" column="proName"></result>
-        <result property="userId" column="userId"></result>
-        <result property="proDec" column="proDec"></result>
-        <result property="proTime" column="proTime"></result>
-        <result property="proModel" column="proModel"></result>
+        <result property="proName" column="pro_name"></result>
+        <result property="userId" column="user_id"></result>
+        <result property="proDec" column="pro_dec"></result>
+        <result property="proTime" column="pro_mime"></result>
+        <result property="proModel" column="pro_model"></result>
     </resultMap>
-    <select id="getPageProject" parameterType="map" resultMap="projectResultMap">
-        select * from project limit #{currIndex} , #{pageSize}
+    <select id="getPageProjectByUserId" parameterType="map" resultMap="projectResultMap">
+        select * from project limit #{currIndex} , #{pageSize} where user_id=#{userId}
     </select>
 </mapper>

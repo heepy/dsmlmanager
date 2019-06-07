@@ -15,46 +15,47 @@ public class Label {
     }
 
 
-    int x;
+    int xMin;
 
-    int y;
+    int yMin;
 
-    int ex;
+    public int getxMin() {
+        return xMin;
+    }
+
+    public void setxMin(int xMin) {
+        this.xMin = xMin;
+    }
+
+    public int getyMin() {
+        return yMin;
+    }
+
+    public void setyMin(int yMin) {
+        this.yMin = yMin;
+    }
+
+    public int getxMax() {
+        return xMax;
+    }
+
+    public void setxMax(int xMax) {
+        this.xMax = xMax;
+    }
+
+    public int getyMax() {
+        return yMax;
+    }
+
+    public void setyMax(int yMax) {
+        this.yMax = yMax;
+    }
+
+    int xMax;
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getEx() {
-        return ex;
-    }
-
-    public void setEx(int ex) {
-        this.ex = ex;
-    }
-
-    public int getEy() {
-        return ey;
-    }
-
-    public void setEy(int ey) {
-        this.ey = ey;
-    }
-    int ey;
+    int yMax;
 }

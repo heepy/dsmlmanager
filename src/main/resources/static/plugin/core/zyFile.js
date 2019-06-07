@@ -173,7 +173,7 @@ var ZYFILE = {
 			
 			xhr.open("POST",self.url, true);
 			xhr.setRequestHeader("X_FILENAME", "File");
-			console.log(formdata);
+			//console.log(formdata);
 			xhr.send(formdata);
 		},
 		// 返回需要上传的文件

@@ -352,6 +352,7 @@
     });
     </script>
     <script type="text/javascript">
+     var userId=10001;   
     $('#table_project').bootstrapTable('destroy');
     $('#table_project').bootstrapTable({
         url: 'http://localhost:8080/dsml/project/table', //请求后台的URL（*）
@@ -370,7 +371,8 @@
         queryParams: function(params) {
             var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
                 pagesize: params.limit, //页面大小
-                currentpage: (params.offset / params.limit) + 1 //页码
+                currentpage: (params.offset / params.limit) + 1,
+                userId:userId //页码
             };
             return temp;
         }, //传递参数（*）

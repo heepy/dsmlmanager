@@ -8,9 +8,10 @@ import java.util.Map;
 
 @Mapper
 public interface DataSetMapper {
-     List<DataSet> getPageDataSet(Map<String,Object> data);
+     List<DataSet> getPageDataSetByProId(Map<String,Object> data);
      void addDataSet(DataSet dataSet);
      int getCount();
      void deleteDataSetById(int id);
-
+     void updateDataSetById(DataSet dataSet);
+     DataSet selectDataSetById(int id);
 }

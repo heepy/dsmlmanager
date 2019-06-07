@@ -5,30 +5,48 @@
 <mapper namespace="com.horan.dsmlmanager.dao.ImageMapper">
     <resultMap id="imageResultMap"  type="com.horan.dsmlmanager.entity.Image" >
         <id property="id" column="id"></id>
-        <result property="dataSetId" column="dataSet_id"></result>
-        <result property="imgName" column="imgName"></result>
+        <result property="dataSetId" column="data_set_id"></result>
+        <result property="imgName" column="img_name"></result>
         <result property="src" column="src"></result>
         <result property="sign" column="sign"></result>
 
     </resultMap>
     <select id="getPageImage" parameterType="map" resultMap="imageResultMap">
-        select * from image
-         where dataSet_id=#{dataSetId} and sign=0
-        limit #{currIndex} , #{pageSize}
+        select * from image   where data_set_id=#{dataSetId} and sign=0 limit #{currIndex} , #{pageSize}
+
+
     </select>
     <select id="getAllNoSignImage" parameterType="int" resultMap="imageResultMap">
         select * from image
-         where dataSet_id=#{dataSetId} and sign=0
+         where data_set_id=#{dataSetId} and sign=0
     </select>
     <select id="getSrcById" parameterType="int" resultType="String">
        select src from image where id=#{id}
     </select>
+    <select id="getCount" resultType="int" parameterType="int">
+        select count(*) from image where data_set_id=#{dataSetId}
+    </select>
     <insert id="addImageList" parameterType="java.util.List" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
-        insert into image(imgName, dataSetId, src,sign) values
+        insert into image(img_name, data_set_id, src,sign) values
                  <foreach collection="list" item="item" index="index" separator=",">
-                     (#{imgName},
-                      #{dataSetId},
-                      #{src},#{sign})
+                     (#{item.imgName},
+                      #{item.dataSetId},
+                      #{item.src},#{item.sign})
                  </foreach>
     </insert>
+    <select id="selectImageById" parameterType="int" resultMap="imageResultMap" >
+        select * from image where id=#{id}
+    </select>
+    <delete id="deleteImageById" parameterType="int">
+        delete from image where id=#{id}
+    </delete>
+    <update id="updateImageById" parameterType="com.horan.dsmlmanager.entity.Image">
+        update image
+        <set>
+            <if test="imgName != null">img_name=#{imgName},</if>
+            <if test=" src!= null">src=#{src},</if>
+            <if test="sign != null">sign=#{sign},</if>
+        </set>
+        where id=#{id}
+    </update>
 </mapper>

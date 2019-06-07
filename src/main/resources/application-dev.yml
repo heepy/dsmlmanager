@@ -18,4 +18,4 @@ server:
     context-path: /dsml
 #项目存放位置
 dsml:
-   path: file:D:/dsml/
+   path: D:/dsml/

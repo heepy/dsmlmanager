@@ -63,7 +63,7 @@
                      html += '						<input id="fileImage" type="file" size="30" name="fileselect[]" ' + multiple + '>';
                      html += '					</div>';
                      html += '				</div>';
-                     html += '				<span id="fileDragArea" class="upload_drag_area">或者将文件拖到此处</span>';
+                     html += '				<span id="fileDragArea" class="upload_drag_area">或将图片拖到此处<ul><li>单个图片上传大小不大于4MB</li></ul></span>';
                      html += '			</div>';
                      html += '			<div class="status_bar">';
                      html += '				<div id="status_info" class="info">选中0张文件，共0B。</div>';
@@ -130,6 +130,7 @@
                  $.each(files, function(k, v) {
                      // 计算得到文件总大小
                      size += v.size;
+
                  });
 
                  // 转化为kb和MB格式。文件的名字、大小、类型都是可以现实出来。
@@ -151,8 +152,11 @@
              this.funFilterEligibleFile = function(files) {
                  var arrFiles = []; // 替换的文件数组
                  for (var i = 0, file; file = files[i]; i++) {
-                     if (file.size >= 51200000) {
-                         alert('您这个"' + file.name + '"文件大小过大');
+                     if (file.size >= 4194304) {
+                          $.message({
+                             message: '您这个"' + file.name + '"文件大小过大,单个文件不超过4MB',
+                             type: 'error'
+                         });
                      } else {
                          // 在这里需要判断当前所有文件中
                          arrFiles.push(file);

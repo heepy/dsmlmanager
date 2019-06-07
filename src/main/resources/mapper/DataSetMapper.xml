@@ -5,20 +5,20 @@
 <mapper namespace="com.horan.dsmlmanager.dao.DataSetMapper">
     <resultMap id="dataSetResultMap"  type="com.horan.dsmlmanager.entity.DataSet" >
         <id property="id" column="id"></id>
-        <result property="dataSetName" column="dataset_name"></result>
+        <result property="dataSetName" column="data_set_name"></result>
         <result property="createTime" column="create_time"></result>
         <result property="imageTotal" column="image_total"></result>
         <result property="annotationTotal" column="annotation_total"></result>
         <result property="status" column="status"></result>
-        <result property="proId" column="proId"></result>
+        <result property="proId" column="pro_id"></result>
     </resultMap>
-    <select id="getPageDataSet" parameterType="map" resultMap="dataSetResultMap">
-        select * from data_set
+    <select id="getPageDataSetByProId" parameterType="map" resultMap="dataSetResultMap">
+        select * from data_set  where pro_id=#{proId}
         limit #{currIndex} , #{pageSize}
-        where proId=#{proId}
+
     </select>
     <insert id="addDataSet"  parameterType="com.horan.dsmlmanager.entity.DataSet" useGeneratedKeys="true" keyProperty="id" >
-      insert into data_set(id,dataset_name,create_time,image_total,annotation_total,status,proId)
+      insert into data_set(id,data_set_name,create_time,image_total,annotation_total,status,pro_id)
       values
        (#{id},#{dataSetName},#{createTime},#{imageTotal},#{annotationTotal},#{status},#{proId})
     </insert>
@@ -28,4 +28,17 @@
     <delete id="deleteDataSetById" parameterType="int">
         delete  from data_set where id=#{id}
     </delete>
+    <update id="updateDataSetById" parameterType="com.horan.dsmlmanager.entity.DataSet">
+        update data_set
+        <set>
+            <if test="dataSetName != null">data_set_name=#{dataSetName},</if>
+            <if test=" imageTotal!= null">image_total=#{imageTotal},</if>
+            <if test="annotationTotal != null">annotation_total=#{annotationTotal},</if>
+            <if test="status != null">status=#{status}</if>
+        </set>
+        where id=#{id}
+    </update>
+    <select id="selectDataSetById" parameterType="int" resultMap="dataSetResultMap">
+        select * from  data_set where id=#{id}
+    </select>
 </mapper>

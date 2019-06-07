@@ -250,7 +250,7 @@
                 <span class="app-sidebar_cat">模型中心</span>
                 <ul class="sidebar-menu">
                     <li>
-                        <a href="blank.html">
+                        <a href="project.html">
                             <span>项目管理</span>
                         </a>
                     </li>
@@ -277,7 +277,7 @@
                             <span>数据集管理</span>
                         </a>
                     </li>
-                     <li>
+                    <li>
                         <a href="add_dataset.html">
                             <span>创建数据集</span>
                         </a>
@@ -369,12 +369,6 @@
     });
     </script>
     <script type="text/javascript">
-    function getimgList(id) {
-
-
-    }
-    </script>
-    <script type="text/javascript">
     (function($) {
         $.getUrlParam = function(name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -383,7 +377,7 @@
             return null;
         }
     })(jQuery);
-      var proId = $.getUrlParam('proId');
+    var proId = 1;
     $('#table_dateSet').bootstrapTable('destroy');
     $('#table_dateSet').bootstrapTable({
         url: 'http://localhost:8080/dsml/dataset/getlist', //请求后台的URL（*）
@@ -398,7 +392,7 @@
             var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
                 pagesize: params.limit, //页面大小
                 currentpage: (params.offset / params.limit) + 1, //页码
-                proId:proId
+                proId: proId
             };
             return temp;
         }, //传递参数（*）
@@ -538,7 +532,8 @@
         $("body").append(outHtml);
 
     }
-    function LookUpById(id){
+
+    function LookUpById(id) {
         window.location.href = "image_list.html?dataSetId=" + id;
     }
 
@@ -595,12 +590,12 @@
 
 
     }
-     
+
     function addList(imgList) { //根据urlList新建拼接图片列表
 
         var str = '';
         for (var i = 0; i < imgList.length; i++) {
-            str += '<a href="javascript:void(0);" onclick="choose_img('+i+')" id="' + i + '">\n<div class="textbox">' + imgList[i].imgName + '</div>\n</a>\n';
+            str += '<a href="javascript:void(0);" onclick="choose_img(' + i + ')" id="' + i + '">\n<div class="textbox">' + imgList[i].imgName + '</div>\n</a>\n';
         }
         var ext = $(str);
         $(".vertical-list").append(ext);
@@ -625,9 +620,10 @@
         });
         return result;
     }
-    function refreshImgEdit(){
-         $imageLabel = imageLabel({
-            img: "http://localhost:8080/"+imgList[imgCurrentIndex].src,
+
+    function refreshImgEdit() {
+        $imageLabel = imageLabel({
+            img: "http://localhost:8080/dsml/visit/" + imgList[imgCurrentIndex].src,
             editPop: true,
             close: function(t) {
                 console.log(t);
@@ -658,18 +654,33 @@
     <script type="text/javascript">
     function save_lable() {
 
-        alert(JSON.stringify($imageLabel.getData()));
+        var data = { "id":imgList[imgCurrentIndex].id, "labels":$imageLabel.getData()};
+        alert(JSON.stringify(data));
+        console.log(JSON.stringify(data));
+        $.ajax({
+            method: "POST",
+            type: "POST",
+            url: 'http://localhost:8080/dsml/image/addlable',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: "json",
+            async: false,
+            success: function(res) {
+                alert("标注成功");
+            }
+        });
     }
-
     function delete_img() {
 
     }
-    function choose_img(i){
+
+    function choose_img(i) {
         removeListClass();
-        imgCurrentIndex=i;
+        imgCurrentIndex = i;
         refreshList();
-         refreshImgEdit();
+        refreshImgEdit();
     }
+
     function close_lable() {
         $("body").find(".s-modal_bg").remove();
         $("#table_dateSet").bootstrapTable('refresh');
@@ -690,11 +701,13 @@
     function refreshList() {
         $('.vertical-list').find("#" + imgCurrentIndex).addClass("active");
     }
-   function removeListClass(){
-    $('.vertical-list').find("#" + imgCurrentIndex).removeClass("active");
-   }
+
+    function removeListClass() {
+        $('.vertical-list').find("#" + imgCurrentIndex).removeClass("active");
+    }
+
     function next_img() {
-        if (imgCurrentIndex == imgList.length-1) {
+        if (imgCurrentIndex == imgList.length - 1) {
             alert("已经是最后一张了");
             return;
         }

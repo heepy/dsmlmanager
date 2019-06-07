@@ -1,17 +1,13 @@
 package com.horan.dsmlmanager.controller;
 
 import com.horan.dsmlmanager.entity.DataSet;
+import com.horan.dsmlmanager.entity.Image;
 import com.horan.dsmlmanager.service.DataSetSevice;
-import com.horan.dsmlmanager.utils.FileUtils;
+import com.horan.dsmlmanager.utils.MyFileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.crypto.spec.OAEPParameterSpec;
-import java.nio.file.Files;
-import java.nio.file.LinkOption;
 import java.nio.file.Path;
-import java.nio.file.attribute.BasicFileAttributeView;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +24,6 @@ public class DataSetController {
         Map<String, Object> result = new HashMap<>();
         List<DataSet> dataSetList = dataSetSevice.getPageDataSet(currentPage, pageSize,proId);
         result.put("rows", dataSetList);
-        System.out.println(dataSetList.get(0).getCreateTime());
         int total = dataSetSevice.getTotal();
         result.put("total", total);
         return result;
@@ -39,7 +34,7 @@ public class DataSetController {
         Map<String, Object> result = new HashMap<>();
         DataSet dataSet = new DataSet();
         String dataSetName = String.valueOf(param.get("dataSetName"));
-        Path path = FileUtils.addFolder(dataSetName);
+        Path path = MyFileUtils.addFolder(dataSetName);
         if (path == null) {
             result.put("message", "创建失败！数据集名称不能相同！");
             return result;

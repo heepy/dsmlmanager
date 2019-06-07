@@ -7,5 +7,7 @@ import java.util.List;
 
 @Service
 public interface UserService {
-   public List<User> findAllUsers();
+    List<User> findAllUsers();
+    User getSimpleUserById(int id);
+    void addUser(User user);
 }

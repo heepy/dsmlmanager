@@ -12,4 +12,9 @@ public interface ImageMapper {
     void addImageList(List<Image> imageList);
     List<Image> getAllNoSignImage(int dataSetId);
     String getSrcById(int id);
+    int getCount(int dataSetId);
+    Image selectImageById(int id);
+    void deleteImageById(int id);
+    void updateImageById(Image image);
+
 }

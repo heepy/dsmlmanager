@@ -16,10 +16,11 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private ProjectMapper projectDao;
     @Override
-    public List<Project> getProjectList(int currentPage, int pageSize) {
+    public List<Project> getProjectList(int currentPage, int pageSize,int userId) {
         Map<String, Object> data = new HashMap();
         data.put("currIndex", (currentPage-1)*pageSize);
         data.put("pageSize", pageSize);
+        data.put("userId",userId);
         return projectDao.getPageProject(data);
     }
 }

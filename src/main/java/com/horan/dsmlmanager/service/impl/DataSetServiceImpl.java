@@ -25,7 +25,7 @@ public class DataSetServiceImpl implements DataSetSevice {
         data.put("currIndex", (currentPage-1)*pageSize);
         data.put("pageSize", pageSize);
         data.put("proId", proId);
-        List<DataSet> dataSetList=dataSetDao.getPageDataSet(data);
+        List<DataSet> dataSetList=dataSetDao.getPageDataSetByProId(data);
         return dataSetList;
     }
 
