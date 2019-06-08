@@ -20,17 +20,17 @@
 		'.toast-message--success .toast-icon':'{margin-right:15px;}',
 		'.toast-message--success .toast-message__content':'{color:#67C23A;}',
 		'.toast-icon--success:before':'{content:"✔";color:#fff;}',
-		'.toast-icon--success:after':'{display:block;position:absolute;content:"";width:20px;height:20px;line-height:20px;background:#67C23A;left:-5px;top:-3px;border-radius:50%;text-align:center;z-index:-1;}',
+		'.toast-icon--success:after':'{display:block;position:absolute;content:"";width:20px;height:20px;line-height:20px;background:#67C23A;left:-5px;top:-3px;border-radius:50%;text-align:center;z-index:10000;}',
 		'.toast-message--warning':'{border-color:#faecd8;background-color:#fdf6ec;}',
 		'.toast-message--warning .toast-icon':'{margin-right:16px;}',
 		'.toast-message--warning .toast-message__content':'{color:#E6A23C;}',
 		'.toast-icon--warning:before':'{content:"!";color:#fff;font-weight:bold;}',
-		'.toast-icon--warning:after':'{display:block;position:absolute;content:"";width:20px;height:20px;line-height:20px;background:#E6A23C;left:-8px;top:-3px;border-radius:50%;text-align:center;z-index:-1;}',
+		'.toast-icon--warning:after':'{display:block;position:absolute;content:"";width:20px;height:20px;line-height:20px;background:#E6A23C;left:-8px;top:-3px;border-radius:50%;text-align:center;z-index:10000;}',
 		'.toast-message--error':'{border-color:#fde2e2;background-color:#fef0f0;font-weight:bold;}',
 		'.toast-message--error .toast-icon':'{margin-right:15px;}',
 		'.toast-message--error .toast-message__content':'{color:#F56C6C;}',
 		'.toast-icon--error:before':'{content:"×";color:#fff;}',
-		'.toast-icon--error:after':'{display:block;position:absolute;content:"";width:20px;height:20px;line-height:20px;background:#F56C6C;left:-5px;top:-3px;border-radius:50%;text-align:center;z-index:-1;}'
+		'.toast-icon--error:after':'{display:block;position:absolute;content:"";width:20px;height:20px;line-height:20px;background:#F56C6C;left:-5px;top:-3px;border-radius:50%;text-align:center;z-index:10000;}'
 	}
 	function generateCss(map){
 		if(document.querySelector('#message_style')){

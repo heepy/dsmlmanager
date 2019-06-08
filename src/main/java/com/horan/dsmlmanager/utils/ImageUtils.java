@@ -20,13 +20,11 @@ public class ImageUtils {
         return result;
     }
     public static void setThumbnailatorImg(InputStream inputStream,String parentPath,String fileName) throws IOException {
-        File realpath=new File(parentPath+"thumbnail");
-        if(!realpath.exists()){
-            realpath.mkdirs();
-        }
+
+        String path= parentPath.replaceAll("src","thumbnail");
         Thumbnails.of(inputStream)
                 .size(140, 180)
-                .toFile(parentPath+File.separator+"thumbnail"+File.separator+fileName);
+                .toFile(path+File.separator+fileName);
     }
 
     public static void main(String[] args) throws IOException {

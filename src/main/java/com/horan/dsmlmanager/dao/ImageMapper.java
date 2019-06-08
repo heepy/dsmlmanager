@@ -16,5 +16,6 @@ public interface ImageMapper {
     Image selectImageById(int id);
     void deleteImageById(int id);
     void updateImageById(Image image);
+    List<Image> getAllSignImage(int dataSetId);
 
 }

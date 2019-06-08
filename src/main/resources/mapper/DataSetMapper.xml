@@ -11,6 +11,8 @@
         <result property="annotationTotal" column="annotation_total"></result>
         <result property="status" column="status"></result>
         <result property="proId" column="pro_id"></result>
+        <result property="src" column="src"></result>
+
     </resultMap>
     <select id="getPageDataSetByProId" parameterType="map" resultMap="dataSetResultMap">
         select * from data_set  where pro_id=#{proId}
@@ -18,12 +20,12 @@
 
     </select>
     <insert id="addDataSet"  parameterType="com.horan.dsmlmanager.entity.DataSet" useGeneratedKeys="true" keyProperty="id" >
-      insert into data_set(id,data_set_name,create_time,image_total,annotation_total,status,pro_id)
+      insert into data_set(id,data_set_name,create_time,image_total,annotation_total,status,pro_id,src)
       values
-       (#{id},#{dataSetName},#{createTime},#{imageTotal},#{annotationTotal},#{status},#{proId})
+       (#{id},#{dataSetName},#{createTime},#{imageTotal},#{annotationTotal},#{status},#{proId},#{src})
     </insert>
-    <select id="getCount" resultType="int">
-        select count(*) from data_set
+    <select id="getCount" resultType="int" parameterType="int">
+        select count(*) from data_set where pro_id=#{proId}
     </select>
     <delete id="deleteDataSetById" parameterType="int">
         delete  from data_set where id=#{id}
@@ -35,6 +37,7 @@
             <if test=" imageTotal!= null">image_total=#{imageTotal},</if>
             <if test="annotationTotal != null">annotation_total=#{annotationTotal},</if>
             <if test="status != null">status=#{status}</if>
+            <if test="src != src">src=#{src}</if>
         </set>
         where id=#{id}
     </update>

@@ -9,5 +9,5 @@ import java.util.List;
 public interface UserService {
     List<User> findAllUsers();
     User getSimpleUserById(int id);
-    void addUser(User user);
+    int addUser(User user);
 }

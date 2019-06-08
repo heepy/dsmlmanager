@@ -4,6 +4,7 @@ import com.horan.dsmlmanager.dao.ProjectMapper;
 import com.horan.dsmlmanager.entity.Project;
 import com.horan.dsmlmanager.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -21,6 +22,21 @@ public class ProjectServiceImpl implements ProjectService {
         data.put("currIndex", (currentPage-1)*pageSize);
         data.put("pageSize", pageSize);
         data.put("userId",userId);
-        return projectDao.getPageProject(data);
+        return projectDao.getPageProjectByUserId(data);
+    }
+
+    @Override
+    public int getTotal(int userId) {
+        return projectDao.getCount(userId);
+    }
+
+    @Override
+    public void addProject(Project project) throws DataAccessException{
+        projectDao.addProject(project);
+    }
+
+    @Override
+    public Project getSimpleProject(int proId) {
+        return projectDao.selectProjectById(proId);
     }
 }

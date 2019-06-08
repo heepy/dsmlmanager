@@ -4,6 +4,7 @@ import com.horan.dsmlmanager.entity.Image;
 import com.horan.dsmlmanager.entity.Label;
 import com.horan.dsmlmanager.entity.LabelModel;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
@@ -13,11 +14,11 @@ import java.util.List;
 public interface ImageService {
 
     List<Image> getPageImageSet(int currentPage, int pageSize, int dataSetId);
-    void  addImageList(List<String> imgNameList,int dataSetId);
+    void  addImageList( int dataSetId, MultipartFile[] fileList);
     List<Image> getAllNoSignImage(int dataSetId);
     String getSrcById(int id);
     void saveLabelXml(List<LabelModel> labels, int id) throws IOException, JAXBException;
     int getCount(int dataSetId);
     void deleteImage(int id) throws IOException;
-
+    List<Image>  getAllSignImage(int dataSetId);
 }

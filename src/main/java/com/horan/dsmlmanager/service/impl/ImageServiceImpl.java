@@ -13,6 +13,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.xml.bind.JAXBException;
 import java.io.BufferedWriter;
@@ -46,24 +47,34 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     @Transactional
-    public void addImageList(List<String> imgNameList, int dataSetId) {
+    public void addImageList( int dataSetId, MultipartFile[] fileList) {
         List<Image> imageList = new ArrayList<>();
-
+        DataSet dataSet= dataSetDao.selectDataSetById(dataSetId);
+        List<String> imgNameList=new ArrayList<>();
+        String dataSetSrc=dataSet.getSrc();
+        for (MultipartFile file:fileList){
+            String name= MyFileUtils.writeUploadFile(file,dataSetSrc);
+            imgNameList.add(name);
+        }
         if (imgNameList != null) {
             for (String imgName : imgNameList) {
                 Image image = new Image(imgName);
                 image.setSign(0);
                 image.setDataSetId(dataSetId);
-                String src = File.separator + dataSetId + File.separator + imgName;
+                String src =dataSetSrc +"src"+ File.separator + imgName;
                 image.setSrc(src);
                 image.setImgName(imgName);
                 imageList.add(image);
             }
         }
-       DataSet dataSet= dataSetDao.selectDataSetById(dataSetId);
+
         if(dataSet!=null){
-           int annTotal= dataSet.getAnnotationTotal();
-           annTotal+=imageList.size();
+            int annTotal= dataSet.getAnnotationTotal();
+            int imageTotal= dataSet.getImageTotal();
+            imageTotal+=imageList.size();
+            if (imageTotal==annTotal)dataSet.setStatus(2);
+            else if(imageTotal>annTotal)dataSet.setStatus(1);
+            dataSet.setImageTotal(imageTotal);
         }
         imageSetDao.addImageList(imageList);
         dataSetDao.updateDataSetById(dataSet);
@@ -96,7 +107,8 @@ public class ImageServiceImpl implements ImageService {
             annotation.setSize(size);
             String xml = JavaBeanToXml.beanToXml(annotation, Annotation.class);
             String filName=file.getName();
-            String xmlPath = file.getParent() + File.separator + "mark"+File.separator+filName.substring(0,filName.indexOf('.'))+".xml";
+            String parentPath= file.getParent().replaceAll("src","mark");
+            String xmlPath = parentPath+File.separator+filName.substring(0,filName.indexOf('.'))+".xml";
             BufferedWriter bfw = new BufferedWriter(new FileWriter(new File(xmlPath)));//输出到XML文件
             bfw.write(xml);
             bfw.close();
@@ -108,9 +120,12 @@ public class ImageServiceImpl implements ImageService {
            dataSet=dataSetDao.selectDataSetById(dataSetId);
         }
         if(dataSet!=null){
-           int annatationTatol= dataSet.getAnnotationTotal();
-           annatationTatol+=1;
-           dataSet.setAnnotationTotal(annatationTatol);
+            int annationTotal=dataSet.getAnnotationTotal();
+           int imageTotal= dataSet.getImageTotal();
+               annationTotal+=1;
+            if (imageTotal==annationTotal)dataSet.setStatus(2);
+           dataSet.setAnnotationTotal(annationTotal);
+
         }
         imageSetDao.updateImageById(image);
         dataSetDao.updateDataSetById(dataSet);
@@ -125,11 +140,17 @@ public class ImageServiceImpl implements ImageService {
     public void deleteImage(int id) throws IOException {
         Image image = imageSetDao.selectImageById(id);
         String src = image.getSrc();
-        String path = MyFileUtils.getThumbnailPath(File.separator + src);
+        String path = MyFileUtils.getThumbnailPath("thumbnail"+File.separator + src);
         MyFileUtils.deleteFile(baseConfig.getPath() + src);
         MyFileUtils.deleteFile(baseConfig.getPath() + path);
         imageSetDao.deleteImageById(id);
     }
+
+    @Override
+    public List<Image>  getAllSignImage(int dataSetId) {
+        return imageSetDao.getAllSignImage(dataSetId);
+    }
+
     private List<Label> getLabelListByModel(List<LabelModel> labelModels,Size size){
      List<Label> labelList=new ArrayList<>();
      for(LabelModel labelModel:labelModels){
@@ -146,4 +167,5 @@ public class ImageServiceImpl implements ImageService {
      }
      return labelList;
     }
+
 }

@@ -2,11 +2,17 @@ package com.horan.dsmlmanager.controller;
 
 import com.horan.dsmlmanager.entity.DataSet;
 import com.horan.dsmlmanager.entity.Image;
+import com.horan.dsmlmanager.entity.Project;
 import com.horan.dsmlmanager.service.DataSetSevice;
+import com.horan.dsmlmanager.service.ProjectService;
 import com.horan.dsmlmanager.utils.MyFileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,32 +24,42 @@ import java.util.Map;
 public class DataSetController {
     @Autowired
     private DataSetSevice dataSetSevice;
+    @Autowired
+    private ProjectService projectService;
 
     @GetMapping(value = "/getlist")
     public Map<String, Object> getPageDataSet(@RequestParam(name = "currentpage") int currentPage, @RequestParam(name = "pagesize") int pageSize, @RequestParam(name = "proId") int proId) {
         Map<String, Object> result = new HashMap<>();
         List<DataSet> dataSetList = dataSetSevice.getPageDataSet(currentPage, pageSize,proId);
         result.put("rows", dataSetList);
-        int total = dataSetSevice.getTotal();
+        int total = dataSetSevice.getTotal(proId);
         result.put("total", total);
         return result;
     }
 
-    @PostMapping(value = "/addset")
-    public Map<String, Object> addDataSet(@RequestBody Map<String, Object> param) {
+    @PostMapping(value = "/addDataset")
+    public @ResponseBody
+    Map<String, Object> submit(@RequestBody DataSet dataSet)
+    {
         Map<String, Object> result = new HashMap<>();
-        DataSet dataSet = new DataSet();
-        String dataSetName = String.valueOf(param.get("dataSetName"));
-        Path path = MyFileUtils.addFolder(dataSetName);
-        if (path == null) {
-            result.put("message", "创建失败！数据集名称不能相同！");
+        int proId=dataSet.getProId();
+        Project project=projectService.getSimpleProject(proId);
+        if(project==null){
+            result.put("message","项目不存在");
             return result;
         }
-        Date date = new Date();
-        dataSet.setDataSetName(dataSetName);
-        dataSet.setCreateTime(date);
+        String projectSrc= project.getSrc();
+        String dataSetSrc=projectSrc+dataSet.getDataSetName()+File.separator;
+        dataSet.setCreateTime(new Date());
+        dataSet.setSrc(dataSetSrc);
+        try{
         dataSetSevice.addDataSet(dataSet);
-        result.put("message", "success");
+        }catch (DataAccessException e){
+            e.printStackTrace();
+           result.put("message","数据集名不能重复");
+        }//这里就可以获取里面的上传过来的数据了
+
+        MyFileUtils.mkDataSetDir(dataSetSrc);
         return result;
     }
     @PostMapping(value = "/delete")

@@ -5,6 +5,15 @@ import java.util.Date;
 
 public class DataSet implements Serializable {
     private int id;
+    private String src;//目录相对路径
+
+    public String getSrc() {
+        return src;
+    }
+
+    public void setSrc(String src) {
+        this.src = src;
+    }
 
     public DataSet() {
     }

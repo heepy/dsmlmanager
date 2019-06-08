@@ -10,8 +10,20 @@
         <result property="proDec" column="pro_dec"></result>
         <result property="proTime" column="pro_mime"></result>
         <result property="proModel" column="pro_model"></result>
+        <result property="src" column="src"></result>
     </resultMap>
     <select id="getPageProjectByUserId" parameterType="map" resultMap="projectResultMap">
-        select * from project limit #{currIndex} , #{pageSize} where user_id=#{userId}
+        select * from project   where user_id=#{userId} limit #{currIndex} , #{pageSize}
+    </select>
+    <select id="selectProjectById" parameterType="int" resultMap="projectResultMap">
+        select * from project   where id=#{proId}
+    </select>
+    <insert id="addProject"  parameterType="com.horan.dsmlmanager.entity.Project" useGeneratedKeys="true" keyProperty="id" >
+      insert into project(id,pro_name,pro_dec,pro_time,pro_model,user_id,src)
+      values
+       (#{id},#{proName},#{proDec},#{proTime},#{proModel},#{userId},#{src})
+    </insert>
+    <select id="getCount" resultType="int" parameterType="int">
+        select count(*) from project where user_id=#{userId}
     </select>
 </mapper>

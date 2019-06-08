@@ -9,6 +9,6 @@ import java.util.List;
 public interface DataSetSevice {
     List<DataSet> getPageDataSet(int currentPage,int pageSize,int proId);
     boolean addDataSet(DataSet dataSet);
-    int getTotal();
+    int getTotal(int proId);
     boolean deleteDataSetById(int id);
 }

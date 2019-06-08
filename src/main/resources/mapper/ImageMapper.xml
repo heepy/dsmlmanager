@@ -12,13 +12,17 @@
 
     </resultMap>
     <select id="getPageImage" parameterType="map" resultMap="imageResultMap">
-        select * from image   where data_set_id=#{dataSetId} and sign=0 limit #{currIndex} , #{pageSize}
+        select * from image   where data_set_id=#{dataSetId} limit #{currIndex} , #{pageSize}
 
 
     </select>
     <select id="getAllNoSignImage" parameterType="int" resultMap="imageResultMap">
         select * from image
          where data_set_id=#{dataSetId} and sign=0
+    </select>
+    <select id="getAllSignImage" parameterType="int" resultMap="imageResultMap">
+        select * from image
+         where data_set_id=#{dataSetId} and sign=1
     </select>
     <select id="getSrcById" parameterType="int" resultType="String">
        select src from image where id=#{id}

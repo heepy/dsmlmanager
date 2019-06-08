@@ -1,11 +1,8 @@
-<html style="min-height: 1605px;">
+<html>
 
 <head>
     <meta charset="UTF-8">
     <title>在线机器学习管理平台</title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <meta name="description" content="Developed By M Abdur Rokib Promy">
-    <meta name="keywords" content="Admin, Bootstrap 3, Template, Theme, Responsive">
     <!-- bootstrap 3.0.2 -->
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!-- font Awesome -->
@@ -31,8 +28,6 @@
     <link href="css/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" type="text/css">
     <!-- Theme style -->
     <link href="css/style.css" rel="stylesheet" type="text/css">
-    <link href="css/imageLabel/edit.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="css/imageLabel/jquery.imageLabel.min.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -43,13 +38,7 @@
     </style>
 </head>
 
-<body class="skin-black  pace-done" style="min-height: 1605px;">
-    <div class="pace  pace-inactive">
-        <div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">
-            <div class="pace-progress-inner"></div>
-        </div>
-        <div class="pace-activity"></div>
-    </div>
+<body class="skin-black  pace-done" style="min-height: 780px;">
     <!-- header logo: style can be found in header.less -->
     <header class="header">
         <a href="index.html" class="logo">
@@ -228,35 +217,19 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-user"></i>
-                            <span>Jane Doe <i class="caret"></i></span>
+                            <span>159******123<i class="caret"></i></span>
                         </a>
                         <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
-                            <li class="dropdown-header text-center">Account</li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-clock-o fa-fw pull-right"></i>
-                                    <span class="badge badge-success pull-right">10</span> Updates</a>
-                                <a href="#">
-                                    <i class="fa fa-envelope-o fa-fw pull-right"></i>
-                                    <span class="badge badge-danger pull-right">5</span> Messages</a>
-                                <a href="#"><i class="fa fa-magnet fa-fw pull-right"></i>
-                                    <span class="badge badge-info pull-right">3</span> Subscriptions</a>
-                                <a href="#"><i class="fa fa-question fa-fw pull-right"></i> <span class="badge pull-right">11</span> FAQ</a>
+                            <li class="dropdown-header text-center">账户</li>
+                            <li><a href="#">
+                                    <i class="fa fa-user" style="color: #000"></i>
+                                    <span style="color: #000">用户中心</span></a>
                             </li>
                             <li class="divider"></li>
                             <li>
                                 <a href="#">
-                                    <i class="fa fa-user fa-fw pull-right"></i>
-                                    Profile
-                                </a>
-                                <a data-toggle="modal" href="#modal-user-settings">
-                                    <i class="fa fa-cog fa-fw pull-right"></i>
-                                    Settings
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
+                                    <i class="fa fa-ban" style="color: #000"></i>
+                                    <span style="color: #000">登出</span></a>
                             </li>
                         </ul>
                     </li>
@@ -264,58 +237,52 @@
             </div>
         </nav>
     </header>
-    <div class="wrapper row-offcanvas row-offcanvas-left" style="min-height: 8px;">
+    <div class="wrapper row-offcanvas row-offcanvas-left">
         <!-- Left side column. contains the logo and sidebar -->
-        <aside class="left-side sidebar-offcanvas" style="min-height: 1605px;">
+        <aside class="left-side sidebar-offcanvas">
             <!-- sidebar: style can be found in sidebar.less -->
-            <section class="sidebar">
-                <!-- Sidebar user panel -->
-                <div class="user-panel">
-                    <div class="pull-left image">
-                        <img src="img/26115.jpg" class="img-circle" alt="User Image">
-                    </div>
-                    <div class="pull-left info">
-                        <p>Hello, 白落提</p>
-                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                    </div>
-                </div>
-                <!-- /.search form -->
-                <!-- sidebar menu: : style can be found in sidebar.less -->
-                <span class="app-sidebar_cat">模型中心</span>
+           <section class="sidebar">
+                <span class="app-sidebar_cat">项目中心</span>
                 <ul class="sidebar-menu">
                     <li>
-                        <a href="blank.html">
+                        <a href="project.html">
                             <span>项目管理</span>
                         </a>
                     </li>
                     <li>
-                        <a href="index.html">
-                            <span>模型管理</span>
+                        <a href="create_project.html">
+                            <span>创建项目</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="blank.html">
-                            <span>项目管理</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="basic_form.html">
-                            <span>模型中心</span>
-                        </a>
-                    </li>
+                   
+                  
                 </ul>
                 <span class="app-sidebar_cat">数据中心</span>
                 <ul class="sidebar-menu">
                     <li>
-                        <a href="simple.html">
+                        <a href="data_set.html">
                             <span>数据集管理</span>
                         </a>
                     </li>
                     <li class="active">
-                        <a href="image_set.html">
-                            <span>图片标注</span>
+                        <a href="add_dataset.html">
+                            <span>创建数据集</span>
                         </a>
                     </li>
+                    <li >
+                        <a href="image_list.html">
+                            <span>图片列表</span>
+                        </a>
+                    </li>
+                </ul>
+                <span class="app-sidebar_cat">用户中心</span>
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="user.html">
+                            <span>用户信息</span>
+                        </a>
+                    </li>
+                    
                 </ul>
             </section>
             <!-- /.sidebar -->
@@ -323,63 +290,62 @@
         <aside class="right-side">
             <section class="content">
                 <ul id="breadcrumb" class="app-breadcrumb app-workspace_top">
-                    <li class="app-breadcrumb_li"><span>图片标注</span>
+                    <li class="app-breadcrumb_li"><a href="project.html" class="s-link nuxt-link-active">项目管理</a><i class="inline-icon tzfont s-icon tzfont-arrow-right s-icon-arrow-right"></i></li>
+                    <li class="app-breadcrumb_li"><span>创建项目</span>
                         <!---->
                     </li>
                 </ul>
-                <div class="row" style="height: 20px"></div>
-                <div class="col-xs-12" style="margin-top: 20px;margin-bottom: 10px;">
-                    <div class="col-lg-1" style="margin-top: 10px">
-                        <span style="font-size: 15px;">
-                            <font style="color:red">*</font>
-                            数据集
-                        </span>
-                    </div>
-                    <div class="col-lg-2">
-                        <select class="form-control" id="imageSet_Select" onchange="selectOnchang(this)">
-                            <option>请选择数据集</option>
-                            <option value="数据标注">数据标注</option>
-                            <option value="数据标注">数据标注</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="col-lg-2">
-                        <button class="s-button" id="s-button" style="margin-top: 20px;margin-bottom: 10px">标注图片</button>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="panel">
-                        <header class="panel-heading" style="text-align: center;">
-                            <span style="font-size: 20px;font-weight: bold;letter-spacing: 10px">数据集列表</span>
-                        </header>
-                        <!-- <div class="box-header"> -->
-                        <!-- <h3 class="box-title">Responsive Hover Table</h3> -->
-                        <!-- </div> -->
-                        <div class="panel-body table-responsive">
-                            <div class="box-tools m-b-15">
-                                <div class="input-group">
-                                    <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                <div class="row">
+                    <div class="col-md-12">
+                        <section class="panel">
+                            <header class="panel-heading">
+                       
+                            </header>
+                            <div class="panel-body">
+                                <form class="form-horizontal tasi-form" method="post">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">项目名称：</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" placeholder="">
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">项目描述：</label>
+                                        <div class="col-sm-7">
+                                            <textarea class="form-control" placeholder="请输入文本" style="height:200px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">项目模型：</label>
+                                        <div class="col-sm-7">
+                                            <div class="file-input file-input-new">
+                                                <div class="input-group file-caption-main">
+                                                    <div tabindex="500" class="form-control file-caption  kv-fileinput-caption">
+                                                        <div class="file-caption-name"></div>
+                                                    </div>
+                                                    <div class="input-group-btn">
+                                                        <div tabindex="500" class="btn btn-primary btn-file"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;
+                                                            <input class="file uploadfile" type="file" multiple="" data-min-file-count="1" id="1559678880360">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="s-button" type="submit">保存</button>
+                                </form>
+
                             </div>
-                            <table id="table_project" class="table table-hover" style="width: 100%">
-                            </table>
-                        </div><!-- /.box-body -->
-                    </div><!-- /.box -->
+                        </section>
+                    </div>
                 </div>
-    </div>
-    </section>
-    </aside>
+            </section>
+        </aside>
+        <div class="footer-main">
+            Copyright © 在线机器学习平台, 2019
+        </div>
     </div>
     <!-- /.content -->
-    <div class="footer-main">
-        Copyright © 在线机器学习平台, 2019
-    </div>
-    </aside><!-- /.right-side -->
-    </div><!-- ./wrapper -->
     <!-- jQuery 2.0.2 -->
     <script src="js/jquery.min.js" type="text/javascript"></script>
     <!-- jQuery UI 1.10.3 -->
@@ -404,193 +370,9 @@
     <script src="js/plugins/bootstrap-table/bootstrap-table.js" type="text/javascript"></script>
     <script src="js/plugins/bootstrap-table/bootstrap-table.min.js" type="text/javascript"></script>
     <script src="js/plugins/bootstrap-table/bootstrap-table-zh-CN.js" type="text/javascript"></script>
-    <script src="js/plugins/imageLabel/jquery.imageLabel.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/plugins/imageLabel/template.js"></script>
-   <!--数据集选择框的 -->
-    <script language="javascript" type="text/javascript">
-    $(document).ready(function() {
-        $('#imageSet_Select').change(function() {
-            alert($(this).children('option:selected').val());
-            var p1 = $(this).children('option:selected').val(); //这就是selected的值  
-           
-        })
-    })
-    </script>
+    <script type="text/javascript" src="js/plugins/bootbox/bootbox.all.min.js"></script>
+    <script type="text/javascript" src="js/plugins/bootbox/bootbox.locales.min.js"></script>
+    <script type="text/javascript" src="js/plugins/bootbox/bootbox.min.js"></script>
     <!-- Director for demo purposes -->
-    <script type="text/javascript">
-    $('input').on('ifChecked', function(event) {
-        // var element = $(this).parent().find('input:checkbox:first');
-        // element.parent().parent().parent().addClass('highlight');
-        $(this).parents('li').addClass("task-done");
-        console.log('ok');
-    });
-    $('input').on('ifUnchecked', function(event) {
-        // var element = $(this).parent().find('input:checkbox:first');
-        // element.parent().parent().parent().removeClass('highlight');
-        $(this).parents('li').removeClass("task-done");
-        console.log('not');
-    });
-    </script>
-
-    <script>
-    var imageLabel;
-    $("#s-button").click(function(t) {
-        if( $('#imageSet_Select').val()=="请选择数据集"){
-            alert("请选择数据集");
-            return ;
-        }
-        t.preventDefault();
-        var showedit = '<div class="s-modal_bg">\n<div class="s-modal_wrapper"><div class="s-modal_main">\n<div class="s-modal_body">\n<div class="left">\n<div class="s-modal_head">标注图片</div>\n</div>\n<div class="right">\n<div class="s-modal_head">图片列表</div>\n</div>\n</div></div></div>';
-        sd = $(showedit);
-
-        var addtoolbox = '<div class="img-edit-toolbox">\n<div class="img-item">\n<a id="" href="javascript:void(0);" title="上一张" onclick="pre_img()"><img src="img/icon/pre_img.png"/></div><div class="img-item">\n<a href="javascript:void(0);" title="删除" id="delete_img" onclick="delete_img()"><img src="img/icon/delete.png"/></a>\n</div> \n<div class="img-item"> \n<a id="" href="javascript:void(0);" title="保存" id="save_lable" onclick="save_lable()"><img src="img/icon/save.png"/></a>\n</div><div class="img-item"><a  href="javascript:void(0);" title="关闭" onclick="close_lable()"><img src="img/icon/close.png"/></a></div><div class="img-item">\n<a id="" href="javascript:void(0);" title="下一张" onclick="next_img()"><img src="img/icon/next_img.png"/></a></div></div>';
-        var at = $(addtoolbox);
-        var addPicList = '<div class="s-modal_list">\n<div class="vertical-list"></div></div>';
-        var apl = $(addPicList);
-        var addList = getList();
-        apl.find(".vertical-list").append(addList);
-        sd.find(".left").find(".s-modal_head").append(at);
-        sd.find(".right").append(apl);
-        $("body").append(sd);
-        $imageLabel = imageLabel({
-            img: "test.jpg",
-            editPop: true,
-            close: function(t) {
-                console.log(t);
-                return false;
-            },
-            clickArea: function() {},
-            edit: function(t) {},
-            startArea: function() {},
-            confirm: function(t) {
-                console.log(t);
-                return false;
-            }
-        })
-
-    })
-    </script>
-    <script type="text/javascript">
-    function getList() {
-        var str = '';
-        for (var i = 0; i < 10; i++) {
-            str += '<a href="javascript:void(0);" onclick="js_method()">\n<div class="imgbox">\n<img src="img/icon/img.png">\n</div>\n<div class="textbox">imgname</div>\n</a>\n';
-        }
-        var ext = $(str);
-        return ext;
-    }
-    </script>
-    <script type="text/javascript">
-    function save_lable() {
-        alert(JSON.stringify($imageLabel.getData()));
-    }
-
-    function delete_img() {
-
-    }
-
-    function close_lable() {
-        $("body").find(".s-modal_bg").remove();
-    }
-
-    function pre_img() {
-
-    }
-
-    function next_img() {
-
-    }
-    </script>
-    <script type="text/javascript">
-    function getimgurl() {
-
-    }
-    </script>
-    <script type="text/javascript">
-    (function($) {
-        $.getUrlParam = function(name) {
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-            var r = window.location.search.substr(1).match(reg);
-            if (r != null) return unescape(r[2]);
-            return null;
-        }
-    })(jQuery);
-
-    //var projectID = $.getUrlParam('projectID');
-     var projectID=1;
-    $('#table_project').bootstrapTable({
-        url: 'http://localhost:8080/dsml/image/table/'+projectID, //请求后台的URL（*）
-        method: 'get', //请求方式（*）
-        //工具按钮用哪个容器
-        striped: true, //是否显示行间隔色
-        cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
-        pagination: true, //是否显示分页（*）
-        queryParams: function(params) {
-            //这里的键的名字和控制器的变量名必须一致，这边改动，控制器也需要改成一样的
-            var temp = {
-                pagesize: params.limit, //页面大小
-                currentpage: (params.offset / params.limit) + 1, //页码
-                //排序列名  
-                sortOrder: params.order //排位命令（desc，asc）  
-            };
-            return temp;
-        }, //传递参数（*）
-        sidePagination: "server", //分页方式：client客户端分页，server服务端分页（*）
-        pageNumber: 1, //初始化加载第一页，默认第一页
-        pageSize: 5, //每页的记录行数（*）
-        pageList: [5, 25, 50, 100], //可供选择的每页的行数（*）
-        search: false, //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
-        contentType: "application/x-www-form-urlencoded",
-        strictSearch: false,
-        showColumns: false, //是否显示所有的列
-        showRefresh: false, //是否显示刷新按钮
-        minimumCountColumns: 2, //最少允许的列数
-        clickToSelect: true, //是否启用点击选中行  
-        height: "560px", //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-        uniqueId: "projectID", //每一行的唯一标识，一般为主键列
-        showToggle: false, //是否显示详细视图和列表视图的切换按钮
-        cardView: false, //是否显示详细视图
-        detailView: false, //是否显示父子表// 是否启用排序
-        paginationPreText: "上一页",
-        paginationNextText: "下一页",
-        columns: [{
-                field: 'ID',
-                title: 'ID',
-                
-            },
-            {
-                field: 'data-progress-text',
-                title: '名称'
-            },
-            {
-                field: 'projectID',
-                title: '项目ID'
-            },
-            {
-                field: 'sign',
-                title: '是否标注',
-                width: 120,
-                align: 'center',
-                valign: 'middle',
-                formatter: actionFormatter,
-            },
-
-        ]
-    });
-
-    //操作栏的格式化
-    function actionFormatter(sign, row, index) {
-        var flag = sign;
-
-        var result = "";
-        if (flag == "0") {
-            result += "<button  class='btn  btn-warning' title='点击标注'>未标注</button>";
-        } else {
-            result += "<button  class='btn  btn-success' title='编辑'>编辑</button>";
-        }
-
-        return result;
-    }
-    </script>
 
 </html>

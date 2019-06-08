@@ -4,6 +4,7 @@ import com.horan.dsmlmanager.dao.DataSetMapper;
 import com.horan.dsmlmanager.entity.DataSet;
 import com.horan.dsmlmanager.service.DataSetSevice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
@@ -30,14 +31,14 @@ public class DataSetServiceImpl implements DataSetSevice {
     }
 
     @Override
-    public boolean addDataSet(DataSet dataSet) {
+    public boolean addDataSet(DataSet dataSet) throws DataAccessException {
         dataSetDao.addDataSet(dataSet);
         return true;
     }
 
     @Override
-    public int getTotal() {
-        return dataSetDao.getCount();
+    public int getTotal(int proId) {
+        return dataSetDao.getCount(proId);
     }
 
     @Override

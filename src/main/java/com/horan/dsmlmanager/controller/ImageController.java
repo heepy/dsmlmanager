@@ -29,14 +29,11 @@ public class ImageController {
      return imageSetService.getPageImageSet(currentPage,pageSize,projectID);
     }
     @PostMapping(value = "/{id}/upload")
-    public List<String> uploadImage(@PathVariable(required = true,name = "id") int id,@RequestParam(value = "fileList",required = false) MultipartFile[] fileList){
+    public Map<String,Object> uploadImage(@PathVariable(required = true,name = "id") int id,@RequestParam(value = "fileList",required = false) MultipartFile[] fileList){
         String folderName=String.valueOf(id);
-        List<String> result=new ArrayList<>();
-        for (MultipartFile file:fileList){
-           String name= MyFileUtils.writeUploadFile(file,folderName);
-           result.add(name);
-        }
-        imageSetService.addImageList(result,id);
+        Map<String,Object> result=new HashMap<>();
+
+        imageSetService.addImageList(id,fileList);
         return result;
     }
     @GetMapping(value = "/{dataSetId}/getlist")
@@ -78,7 +75,6 @@ public class ImageController {
                String  thumbnail=MyFileUtils.getThumbnailPath(src);
                String srcNew=  thumbnail.replaceAll("\\\\","/");
                image.setSrc(srcNew);
-
            }
         }
         int total=imageSetService.getCount(dataSetId);

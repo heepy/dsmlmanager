@@ -1,10 +1,20 @@
 package com.horan.dsmlmanager.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Project implements Serializable {
     private int id;
     private String proName;
+    private String src; //项目相对路径
+
+    public String getSrc() {
+        return src;
+    }
+
+    public void setSrc(String src) {
+        this.src = src;
+    }
 
     public int getId() {
         return id;
@@ -38,11 +48,11 @@ public class Project implements Serializable {
         this.proModel = proModel;
     }
 
-    public String getProTime() {
+    public Date getProTime() {
         return proTime;
     }
 
-    public void setProTime(String proTime) {
+    public void setProTime(Date proTime) {
         this.proTime = proTime;
     }
 
@@ -62,6 +72,6 @@ public class Project implements Serializable {
 
 
     private String proModel;
-    private String proTime;
+    private Date proTime;
     private String proDec;
 }

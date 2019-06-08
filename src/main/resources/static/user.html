@@ -1,11 +1,8 @@
-<html style="min-height: 1605px;">
+<html>
 
 <head>
     <meta charset="UTF-8">
-    <title>在线机器学习平台</title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <meta name="description" content="Developed By M Abdur Rokib Promy">
-    <meta name="keywords" content="Admin, Bootstrap 3, Template, Theme, Responsive">
+    <title>在线机器学习管理平台</title>
     <!-- bootstrap 3.0.2 -->
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!-- font Awesome -->
@@ -27,6 +24,8 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <!-- <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" /> -->
     <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-table/bootstrap-table.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" type="text/css">
     <!-- Theme style -->
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -39,13 +38,7 @@
     </style>
 </head>
 
-<body class="skin-black  pace-done" style="min-height: 1605px;">
-    <div class="pace  pace-inactive">
-        <div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">
-            <div class="pace-progress-inner"></div>
-        </div>
-        <div class="pace-activity"></div>
-    </div>
+<body class="skin-black  pace-done" style="min-height: 780px;">
     <!-- header logo: style can be found in header.less -->
     <header class="header">
         <a href="index.html" class="logo">
@@ -224,35 +217,19 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-user"></i>
-                            <span>Jane Doe <i class="caret"></i></span>
+                            <span>159******123<i class="caret"></i></span>
                         </a>
                         <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
-                            <li class="dropdown-header text-center">Account</li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-clock-o fa-fw pull-right"></i>
-                                    <span class="badge badge-success pull-right">10</span> Updates</a>
-                                <a href="#">
-                                    <i class="fa fa-envelope-o fa-fw pull-right"></i>
-                                    <span class="badge badge-danger pull-right">5</span> Messages</a>
-                                <a href="#"><i class="fa fa-magnet fa-fw pull-right"></i>
-                                    <span class="badge badge-info pull-right">3</span> Subscriptions</a>
-                                <a href="#"><i class="fa fa-question fa-fw pull-right"></i> <span class="badge pull-right">11</span> FAQ</a>
+                            <li class="dropdown-header text-center">账户</li>
+                            <li><a href="#">
+                                    <i class="fa fa-user" style="color: #000"></i>
+                                    <span style="color: #000">用户中心</span></a>
                             </li>
                             <li class="divider"></li>
                             <li>
                                 <a href="#">
-                                    <i class="fa fa-user fa-fw pull-right"></i>
-                                    Profile
-                                </a>
-                                <a data-toggle="modal" href="#modal-user-settings">
-                                    <i class="fa fa-cog fa-fw pull-right"></i>
-                                    Settings
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
+                                    <i class="fa fa-ban" style="color: #000"></i>
+                                    <span style="color: #000">登出</span></a>
                             </li>
                         </ul>
                     </li>
@@ -260,96 +237,116 @@
             </div>
         </nav>
     </header>
-    <div class="wrapper row-offcanvas row-offcanvas-left" style="min-height: 8px;">
+    <div class="wrapper row-offcanvas row-offcanvas-left">
         <!-- Left side column. contains the logo and sidebar -->
-        <aside class="left-side sidebar-offcanvas" style="min-height: 1605px;">
+        <aside class="left-side sidebar-offcanvas">
             <!-- sidebar: style can be found in sidebar.less -->
-            <section class="sidebar">
-                <!-- Sidebar user panel -->
-                <div class="user-panel">
-                    <div class="pull-left image">
-                        <img src="img/26115.jpg" class="img-circle" alt="User Image">
-                    </div>
-                    <div class="pull-left info">
-                        <p>Hello, 白落提</p>
-                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                    </div>
-                </div>
-                <!-- /.search form -->
-                <!-- sidebar menu: : style can be found in sidebar.less -->
-                <span class="app-sidebar_cat">模型中心</span>
+           <section class="sidebar">
+                <span class="app-sidebar_cat">项目中心</span>
                 <ul class="sidebar-menu">
-                    <li class="active">
-                        <a href="index.html">
-                            <span>模型管理</span>
+                    <li>
+                        <a href="project.html">
+                            <span>项目管理</span>
                         </a>
                     </li>
                     <li>
-                        <a href="general.html">
-                            <span>数据集</span>
+                        <a href="create_project.html">
+                            <span>创建项目</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="basic_form.html">
-                            <span>模型中心</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="simple.html">
-                            <span>数据集上传</span>
-                        </a>
-                    </li>
+                   
+                  
                 </ul>
                 <span class="app-sidebar_cat">数据中心</span>
                 <ul class="sidebar-menu">
                     <li>
-                        <a href="basic_form.html">
-                            <span>数据集上传</span>
+                        <a href="data_set.html">
+                            <span>数据集管理</span>
                         </a>
                     </li>
                     <li>
-                        <a href="simple.html">
-                            <span>图片标注上传</span>
+                        <a href="add_dataset.html">
+                            <span>创建数据集</span>
                         </a>
                     </li>
+                    <li >
+                        <a href="image_list.html">
+                            <span>图片列表</span>
+                        </a>
+                    </li>
+                </ul>
+                <span class="app-sidebar_cat">用户中心</span>
+                <ul class="sidebar-menu">
+                    <li class="active">
+                        <a href="user.html">
+                            <span>用户信息</span>
+                        </a>
+                    </li>
+                    
                 </ul>
             </section>
             <!-- /.sidebar -->
         </aside>
         <aside class="right-side">
-            <!-- Main content -->
-            <div class="app-workspace">
+            <section class="content">
                 <ul id="breadcrumb" class="app-breadcrumb app-workspace_top">
-                    <li class="app-breadcrumb_li"><a href="/easydl/app/2/datasets" class="s-link nuxt-link-active">数据集管理</a><i class="inline-icon tzfont s-icon tzfont-arrow-right s-icon-arrow-right"></i></li>
-                    <li class="app-breadcrumb_li"><span>数据标注</span>
+                    <li class="app-breadcrumb_li"><a href="project.html" class="s-link nuxt-link-active">项目管理</a><i class="inline-icon tzfont s-icon tzfont-arrow-right s-icon-arrow-right"></i></li>
+                    <li class="app-breadcrumb_li"><span>创建项目</span>
                         <!---->
                     </li>
                 </ul>
-                <div class="app-workspace_main">
-                    <div class="annotate">
-                        <button type="button" id="hide">点击隐藏</button>
-                          <button type="button" id="edit">点击编辑图片</button>
-                        <div class="row">
-                                <div class="annotate-editor mono" style="position: relative;">当前数据集中图片都已标注完成，您可以上传新图片进行标注
-                                    <button type="button" class="s-button" id="upload_button">
-                                        <!----> <span class="s-button__txt">上传图片</span>
-                                    </button>
-                                </div>
-                            
-                            <div class="annotate-labels"></div>
-                        </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <section class="panel">
+                            <header class="panel-heading">
+                       
+                            </header>
+                            <div class="panel-body">
+                                <form class="form-horizontal tasi-form" method="post">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">项目名称：</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">项目描述：</label>
+                                        <div class="col-sm-7">
+                                            <textarea class="form-control" placeholder="请输入文本" style="height:200px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">项目模型：</label>
+                                        <div class="col-sm-7">
+                                            <div class="file-input file-input-new">
+                                                <div class="input-group file-caption-main">
+                                                    <div tabindex="500" class="form-control file-caption  kv-fileinput-caption">
+                                                        <div class="file-caption-name"></div>
+                                                    </div>
+                                                    <div class="input-group-btn">
+                                                        <div tabindex="500" class="btn btn-primary btn-file"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;
+                                                            <input class="file uploadfile" type="file" multiple="" data-min-file-count="1" id="1559678880360">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="s-button" type="submit">保存</button>
+                                </form>
+
+                            </div>
+                        </section>
                     </div>
                 </div>
-            </div>
+            </section>
+        </aside>
+        <div class="footer-main">
+            Copyright © 在线机器学习平台, 2019
+        </div>
     </div>
     <!-- /.content -->
-    <div class="footer-main">
-        Copyright © 在线机器学习平台, 2019
-    </div>
-    </aside><!-- /.right-side -->
-    </div><!-- ./wrapper -->
     <!-- jQuery 2.0.2 -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="js/jquery.min.js" type="text/javascript"></script>
     <!-- jQuery UI 1.10.3 -->
     <script src="js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
@@ -370,66 +367,12 @@
     <script src="js/Director/app.js" type="text/javascript"></script>
     <!-- Director dashboard demo (This is only for demo purposes) -->
     <script src="js/Director/dashboard.js" type="text/javascript"></script>
+    <script src="js/plugins/bootstrap-table/bootstrap-table.js" type="text/javascript"></script>
+    <script src="js/plugins/bootstrap-table/bootstrap-table.min.js" type="text/javascript"></script>
+    <script src="js/plugins/bootstrap-table/bootstrap-table-zh-CN.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/plugins/bootbox/bootbox.all.min.js"></script>
+    <script type="text/javascript" src="js/plugins/bootbox/bootbox.locales.min.js"></script>
+    <script type="text/javascript" src="js/plugins/bootbox/bootbox.min.js"></script>
     <!-- Director for demo purposes -->
-    <script type="text/javascript">
-    $('input').on('ifChecked', function(event) {
-        // var element = $(this).parent().find('input:checkbox:first');
-        // element.parent().parent().parent().addClass('highlight');
-        $(this).parents('li').addClass("task-done");
-        console.log('ok');
-    });
-    $('input').on('ifUnchecked', function(event) {
-        // var element = $(this).parent().find('input:checkbox:first');
-        // element.parent().parent().parent().removeClass('highlight');
-        $(this).parents('li').removeClass("task-done");
-        console.log('not');
-    });
-    </script>
-    <script>
-    $('#noti-box').slimScroll({
-        height: '400px',
-        size: '5px',
-        BorderRadius: '5px'
-    });
-
-    $('input[type="checkbox"].flat-grey, input[type="radio"].flat-grey').iCheck({
-        checkboxClass: 'icheckbox_flat-grey',
-        radioClass: 'iradio_flat-grey'
-    });
-    </script>
-    <script type="text/javascript">
-    $("#upload_button").click(function() {
-        console.log("点击一次按钮");
-        makeNewWindow("plugin/upload.html");
-    });
-    var newWindow;
-
-    //定义一个窗口，有利于窗口间的通讯
-
-    function makeNewWindow(url) {
-        if (!newWindow || newWindow.closed) {
-            var width = 1000;
-            var height = 500;
-            var left = parseInt((screen.availWidth / 2) - (width / 2)); //屏幕居中
-            var top = parseInt((screen.availHeight / 2) - (height / 2));
-            var windowFeatures = "width=" + width + ",height=" + height + ",status,resizable,left=" + left + ",top=" + top + "screenX=" + left + ",screenY=" + top;
-            newWindow = window.open(url, "subWind", windowFeatures);
-        } else {
-            // window is already open, so bring it to the front
-            newWindow.focus();
-        }
-    }
-    </script>
-    <script type="text/javascript">
-        $("#hide").click(function(){
-               console.log("点击隐藏");
-               $("div.annotate-editor.mono").html("<p>还未选择数据集<p>");
-         });
-           $("#edit").click(function(){
-               console.log("点击显示编辑器");
-               $("div.annotate-editor.mono").hide().html("<p>还未选择数据集<p>");
-         });
-    </script>
-</body>
 
 </html>
