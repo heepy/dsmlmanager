@@ -8,7 +8,7 @@
         <result property="proName" column="pro_name"></result>
         <result property="userId" column="user_id"></result>
         <result property="proDec" column="pro_dec"></result>
-        <result property="proTime" column="pro_mime"></result>
+        <result property="proTime" column="pro_time"></result>
         <result property="proModel" column="pro_model"></result>
         <result property="src" column="src"></result>
     </resultMap>
@@ -26,4 +26,12 @@
     <select id="getCount" resultType="int" parameterType="int">
         select count(*) from project where user_id=#{userId}
     </select>
+    <update id="updateProjectById" parameterType="com.horan.dsmlmanager.entity.Project">
+        update project
+        <set>
+            <if test="proName != null">pro_name=#{proName},</if>
+            <if test="src != null">src=#{src},</if>
+        </set>
+        where id=#{id}
+    </update>
 </mapper>

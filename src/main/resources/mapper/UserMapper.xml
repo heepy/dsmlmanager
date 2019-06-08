@@ -25,5 +25,16 @@
     <select id="selectUserById" resultMap="userResultMap" parameterType="int">
         select * from users where id=#{id}
     </select>
+    <update id="updateUserById" parameterType="com.horan.dsmlmanager.entity.User">
+        update users
+        <set>
+            <if test="userName != null">username=#{userName},</if>
+            <if test=" password!= null">password=#{password},</if>
+            <if test="email != null">email=#{email},</if>
+            <if test="phone != null">phone=#{phone},</if>
+            <if test="address != null">address=#{address},</if>
+        </set>
+        where id=#{id}
+    </update>
 
 </mapper>

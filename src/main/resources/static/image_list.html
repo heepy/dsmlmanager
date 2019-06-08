@@ -115,11 +115,7 @@
                             <span>数据集管理</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="add_dataset.html">
-                            <span>创建数据集</span>
-                        </a>
-                    </li>
+                  
                     <li class="active">
                         <a href="image_list.html">
                             <span>图片列表</span>
@@ -148,25 +144,15 @@
                 </ul>
                 <div class="col-xs-12" style="margin-top: 20px;margin-bottom: 10px;">
                     <div class="col-lg-12" style="margin-top: 10px">
-                        <span id="dataSetName" style="font-size: 15px;">
+                        <span style="font-size: 15px;">
                             <font style="color:red">*</font>
                             数据集名称：
                         </span>
+                        <span style="font-size: 15px;" id="dataSetName"></span>
                     </div>
                 </div>
                 <div class="col-xs-12">
                     <div class="datasets-show">
-                        <div class="s-tab-group">
-                            <div class="s-tab active" id="allimg">全部图片</div>
-                            <div class="s-tab" id="nolabel">未标注图片</div>
-                            <div class="indicator" style="width: 130px; transform: translateX(0px);">
-                            </div>
-                        </div>
-                        <div class="datasets-show_btn-group">
-                            <button type="button" class="s-button" id="s-button">
-                                <span class="s-button__txt">创建数据集</span>
-                            </button>
-                        </div>
                         <div class="datasets-show_op"></div>
                         <div class="entity-list" style="position: relative;">
                             <div class="s-empty-placeholder">
@@ -220,8 +206,18 @@
     <script type="text/javascript" src="js/plugins/bootbox/bootbox.min.js"></script>
     <script type="text/javascript" src="js/plugins/zpage/jquery.z-pager.js"></script>
     <script type="text/javascript" src="js/plugins/zpage/page_common.js"></script>
+      <script language="javascript" type="text/javascript">
+    (function($) {
+        $.getUrlParam = function(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+    })(jQuery);
+    </script>
     <script type="text/javascript">
-    var dataSetId = 10000;
+    var dataSetId = $.getUrlParam("dataSetId");;
     var total;
     var imgList;
     var currentPage = 1;
@@ -244,6 +240,7 @@
         success: function(res) {
             total = res.total;
             imgList = res.imgList;
+            $("#dataSetName").text(res.dataSetName);
         },
         dataType: "json"
     });
@@ -320,11 +317,7 @@
       loadEntityList(imgList, total, currentPageNoSign);
 
     });
-    $("#allimg").click(function() {
-        $("#allimg").addClass("active");
-        $("#nolabel").removeClass("active");
-        $(".indicator").css({ "width": "100px", "transform": "translateX(0px)" })
-    });
+  
 
     $(document).on("click", ".entity-img_top", function() { //动态添加的元素，绑定点击事件
 

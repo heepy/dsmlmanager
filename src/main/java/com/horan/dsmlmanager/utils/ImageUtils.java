@@ -19,9 +19,9 @@ public class ImageUtils {
          result.setDepth(color.getPixelSize());
         return result;
     }
-    public static void setThumbnailatorImg(InputStream inputStream,String parentPath,String fileName) throws IOException {
+    public static void setThumbnailatorImg(InputStream inputStream,String srcPath,String fileName) throws IOException {
 
-        String path= parentPath.replaceAll("src","thumbnail");
+        String path= srcPath.replaceAll("src","thumbnail");
         Thumbnails.of(inputStream)
                 .size(140, 180)
                 .toFile(path+File.separator+fileName);

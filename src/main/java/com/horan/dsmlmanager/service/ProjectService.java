@@ -12,4 +12,5 @@ public interface ProjectService  {
    int getTotal(int userId);
    void addProject(Project project) ;
    Project getSimpleProject(int proId);
+   void updateProject(Project project) throws DataAccessException;
 }

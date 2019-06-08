@@ -13,4 +13,5 @@ public interface ProjectMapper {
        int getCount(int userId);
        void addProject(Project project) throws DataAccessException;
        Project selectProjectById(int proId);
+       void updateProjectById(Project project)throws  DataAccessException ;
 }

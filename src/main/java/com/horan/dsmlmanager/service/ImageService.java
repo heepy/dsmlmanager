@@ -14,7 +14,7 @@ import java.util.List;
 public interface ImageService {
 
     List<Image> getPageImageSet(int currentPage, int pageSize, int dataSetId);
-    void  addImageList( int dataSetId, MultipartFile[] fileList);
+    void  addImageList(int dataSetId,List<String> imgNameList);
     List<Image> getAllNoSignImage(int dataSetId);
     String getSrcById(int id);
     void saveLabelXml(List<LabelModel> labels, int id) throws IOException, JAXBException;

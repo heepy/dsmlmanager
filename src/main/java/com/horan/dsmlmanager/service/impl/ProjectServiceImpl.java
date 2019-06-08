@@ -39,4 +39,9 @@ public class ProjectServiceImpl implements ProjectService {
     public Project getSimpleProject(int proId) {
         return projectDao.selectProjectById(proId);
     }
+
+    @Override
+    public void updateProject(Project project) throws DataAccessException {
+        projectDao.updateProjectById(project);
+    }
 }

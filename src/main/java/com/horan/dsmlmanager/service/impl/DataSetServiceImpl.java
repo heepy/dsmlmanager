@@ -47,5 +47,10 @@ public class DataSetServiceImpl implements DataSetSevice {
         return false;
     }
 
+    @Override
+    public DataSet getDataSetById(int dataSetId) {
+        return dataSetDao.selectDataSetById(dataSetId);
+    }
+
 
 }

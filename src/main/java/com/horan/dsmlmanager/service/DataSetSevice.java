@@ -11,4 +11,5 @@ public interface DataSetSevice {
     boolean addDataSet(DataSet dataSet);
     int getTotal(int proId);
     boolean deleteDataSetById(int id);
+    DataSet getDataSetById(int dataSetId);
 }

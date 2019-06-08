@@ -1,5 +1,6 @@
 package com.horan.dsmlmanager.controller;
 
+import com.horan.dsmlmanager.config.BaseConfig;
 import com.horan.dsmlmanager.entity.Project;
 import com.horan.dsmlmanager.service.ProjectService;
 import com.horan.dsmlmanager.utils.MyFileUtils;
@@ -21,6 +22,8 @@ public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
+    @Autowired
+    private BaseConfig baseConfig;
 
     @GetMapping(value = "/table")
     public Map<String, Object> getProjectList(@RequestParam(name = "currentpage") int currentPage, @RequestParam(name = "pagesize") int pageSize, @RequestParam(name = "userId", required = true) int userId) {
@@ -39,8 +42,7 @@ public class ProjectController {
 
     @PostMapping(value = "/{userId}/addproject")
     public @ResponseBody
-    Map<String, Object> submit(String proName, String proDec, MultipartFile file, @PathVariable(value = "userId") int userId)
-            {
+    Map<String, Object> submit(String proName, String proDec, MultipartFile file, @PathVariable(value = "userId") int userId) {
         Map<String, Object> result = new HashMap<>();
         //这里就可以获取里面的上传过来的数据了
         Project project = new Project();
@@ -49,22 +51,43 @@ public class ProjectController {
         Date createTime = new Date();
         project.setProTime(createTime);
         String src = File.separator + userId + File.separator + proName + File.separator;
-        String proModel=file.getOriginalFilename();
+        String proModel = file.getName();
         project.setProModel(proModel);
         project.setSrc(src);
         project.setUserId(userId);
         try {
             projectService.addProject(project);
-        }catch ( DataAccessException e){
-            result.put("message","项目名不能重复！！");
+        } catch (DataAccessException e) {
+            result.put("message", "项目名不能重复！！");
         }
         //做一些存库操作，以及返回的数据
-                try {
-                    MyFileUtils.saveModelFile(src, file);
-                } catch (IOException e) {
-                    result.put("message","系统错误，目录不能创建");
-                }
-                return result;
+        try {
+            MyFileUtils.saveModelFile(src, file);
+        } catch (IOException e) {
+            result.put("message", "系统错误，目录不能创建");
+        }
+        return result;
+    }
+
+    @PostMapping(value = "/edit")
+    public @ResponseBody
+    Map<String, Object> updateProject(Project param) {
+        Map<String, Object> result = new HashMap<>();
+        Project oldProject = projectService.getSimpleProject(param.getId());
+        Project newProject = param;
+        String oldSrc = oldProject.getSrc();
+        String newSrc = oldSrc.replaceAll(oldProject.getProName(), newProject.getProName());//src中的旧项目名换成新项目名
+        newProject.setSrc(newSrc);
+
+        try {
+            projectService.updateProject(newProject);
+        } catch (DataAccessException e) {
+            result.put("message", "修改失败!!!项目名重复");
+            return result;
+        }
+
+        result.put("message", "修改成功");
+        return result;
     }
 
 

@@ -39,7 +39,7 @@ public class DataSetController {
 
     @PostMapping(value = "/addDataset")
     public @ResponseBody
-    Map<String, Object> submit(@RequestBody DataSet dataSet)
+    Map<String, Object> submit( DataSet dataSet)
     {
         Map<String, Object> result = new HashMap<>();
         int proId=dataSet.getProId();

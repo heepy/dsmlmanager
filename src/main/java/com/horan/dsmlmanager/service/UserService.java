@@ -10,4 +10,5 @@ public interface UserService {
     List<User> findAllUsers();
     User getSimpleUserById(int id);
     int addUser(User user);
+    void updateUser(User user);
 }

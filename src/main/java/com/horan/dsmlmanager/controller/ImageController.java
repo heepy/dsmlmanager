@@ -1,9 +1,11 @@
 package com.horan.dsmlmanager.controller;
 
 import com.horan.dsmlmanager.config.BaseConfig;
+import com.horan.dsmlmanager.entity.DataSet;
 import com.horan.dsmlmanager.entity.Image;
 import com.horan.dsmlmanager.entity.Label;
 import com.horan.dsmlmanager.entity.LabelModel;
+import com.horan.dsmlmanager.service.DataSetSevice;
 import com.horan.dsmlmanager.service.ImageService;
 import com.horan.dsmlmanager.utils.MyFileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ public class ImageController {
     private ImageService imageSetService;
     @Autowired
     private BaseConfig baseConfig;
+    @Autowired
+    private DataSetSevice dataSetSevice;
     @GetMapping(value = "/table/{projectID}")
     public List<Image> getImageTable(@PathVariable(name = "projectID") int projectID , @RequestParam(name = "currentpage") int currentPage, @RequestParam(name = "pagesize") int pageSize){
         System.out.println(projectID);
@@ -32,9 +36,16 @@ public class ImageController {
     public Map<String,Object> uploadImage(@PathVariable(required = true,name = "id") int id,@RequestParam(value = "fileList",required = false) MultipartFile[] fileList){
         String folderName=String.valueOf(id);
         Map<String,Object> result=new HashMap<>();
-
-        imageSetService.addImageList(id,fileList);
-        return result;
+        List<String> imgNameList=new ArrayList<>();
+        DataSet dataSet= dataSetSevice.getDataSetById(id);
+        String  dataSetSrc=dataSet.getSrc();
+        int length=  fileList.length;
+        for (MultipartFile file:fileList){
+            String name= MyFileUtils.writeUploadFile(file,dataSetSrc);
+            imgNameList.add(name);
+        }
+        imageSetService.addImageList(id,imgNameList);
+         return result;
     }
     @GetMapping(value = "/{dataSetId}/getlist")
     public List<Image> getImageNameList(@PathVariable(name = "dataSetId") int dataSetId){
@@ -68,7 +79,7 @@ public class ImageController {
     public Map<String,Object> getImageList(@RequestParam(name = "dataSetId") int dataSetId,@RequestParam(name = "pageCurrent") int currentPage, @RequestParam(name = "pageSize") int page ){
         Map<String,Object> result=new HashMap<>();
         List<Image> imageList=imageSetService.getPageImageSet(currentPage,12,dataSetId);
-
+        DataSet dataSet=dataSetSevice.getDataSetById(dataSetId);
         if (imageList!=null&&imageList.size()>0){
            for(Image image:imageList){
                String src= image.getSrc();
@@ -78,9 +89,9 @@ public class ImageController {
            }
         }
         int total=imageSetService.getCount(dataSetId);
+        result.put("dataSetName",dataSet.getDataSetName());
         result.put("imgList",imageList);
         result.put("total",total);
-
         return result;
     }
     @GetMapping(value = "/gettotal")

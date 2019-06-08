@@ -11,4 +11,5 @@ public interface UserMapper {
    List<User> selectAllUser();
    int addUser(User user);
    User selectUserById(int id);
+   void updateUserById(User user);
 }

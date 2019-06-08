@@ -41,7 +41,7 @@ public class MyFileUtils {
             return "NOT_IMAGE";
         }
 
-        filename = module + "_" + new Date().getTime() + code + "." + extname;
+        filename = "IMG"+ "_" + new Date().getTime() + code + "." + extname;
         code++;
         InputStream input = null;
         FileOutputStream fos = null;
@@ -169,7 +169,11 @@ public class MyFileUtils {
 
 
     }
-
+    public static void renameFile(String oldSrc,String newSrc) throws IOException{
+        File file = new File(oldSrc);
+        //将原文件夹更改为A，其中路径是必要的。注意
+        file.renameTo(new File(newSrc));
+    }
     public static void main(String[] args) {
 
     }

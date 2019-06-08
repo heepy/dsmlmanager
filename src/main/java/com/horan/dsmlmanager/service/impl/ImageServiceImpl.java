@@ -47,15 +47,10 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     @Transactional
-    public void addImageList( int dataSetId, MultipartFile[] fileList) {
+    public void addImageList( int dataSetId,List<String> imgNameList) {
         List<Image> imageList = new ArrayList<>();
         DataSet dataSet= dataSetDao.selectDataSetById(dataSetId);
-        List<String> imgNameList=new ArrayList<>();
         String dataSetSrc=dataSet.getSrc();
-        for (MultipartFile file:fileList){
-            String name= MyFileUtils.writeUploadFile(file,dataSetSrc);
-            imgNameList.add(name);
-        }
         if (imgNameList != null) {
             for (String imgName : imgNameList) {
                 Image image = new Image(imgName);
@@ -140,7 +135,7 @@ public class ImageServiceImpl implements ImageService {
     public void deleteImage(int id) throws IOException {
         Image image = imageSetDao.selectImageById(id);
         String src = image.getSrc();
-        String path = MyFileUtils.getThumbnailPath("thumbnail"+File.separator + src);
+        String path = MyFileUtils.getThumbnailPath(src);
         MyFileUtils.deleteFile(baseConfig.getPath() + src);
         MyFileUtils.deleteFile(baseConfig.getPath() + path);
         imageSetDao.deleteImageById(id);
